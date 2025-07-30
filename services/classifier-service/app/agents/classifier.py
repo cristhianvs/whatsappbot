@@ -1,74 +1,49 @@
-from typing import Dict, List
-import os
-from langchain.agents import Agent
-from langchain_openai import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage
+from typing import Dict, List, Any
 import structlog
+import asyncio
 
-from ..models.schemas import ClassificationResponse
+from ..models.schemas import ClassificationResponse, MessageContext
+from ..ai.model_manager import model_manager
 
 logger = structlog.get_logger()
 
 class MessageClassifier:
     def __init__(self):
-        self.llm = ChatOpenAI(
-            model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
-            api_key=os.getenv("OPENAI_API_KEY"),
-            temperature=0.1
-        )
-        
-        self.system_prompt = """You are a message classifier for a retail support system.
-        
-        Your task is to analyze WhatsApp messages and determine if they represent support incidents.
-        
-        RETAIL CONTEXT:
-        - This is for retail stores and POS systems
-        - Common issues: store closures, POS failures, inventory problems, payment issues
-        - Urgent keywords: "urgente", "no funciona", "cerrado", "sistema caído", "no pueden vender"
-        
-        CLASSIFICATION CRITERIA:
-        - IS INCIDENT: Clear technical/operational problems affecting business operations
-        - NOT INCIDENT: General questions, casual conversation, already resolved issues
-        
-        PRIORITY LEVELS:
-        - urgent: Store cannot operate, system down, prevents sales
-        - normal: Issues that need attention but don't stop operations
-        - low: General questions or minor issues
-        
-        CATEGORIES:
-        - technical: POS, system, software issues
-        - operational: Store operations, inventory, processes
-        - urgent: Any critical issue requiring immediate attention
-        - general: Questions, information requests
-        
-        Return a JSON response with:
-        - is_incident: boolean
-        - confidence: float (0.0-1.0)
-        - category: string
-        - trigger_words: array of detected keywords
-        - priority: string
-        - requires_human: boolean (for complex cases)
-        """
+        self.fallback_keywords = {
+            "urgent": ["urgente", "no funciona", "cerrado", "sistema caído", "no pueden vender", "error", "crítico"],
+            "technical": ["pos", "sistema", "software", "aplicación", "red", "internet", "servidor", "base de datos"],
+            "operational": ["tienda", "inventario", "producto", "cliente", "venta", "caja", "personal"],
+            "billing": ["factura", "cobro", "pago", "precio", "descuento", "promoción"],
+            "general": ["pregunta", "consulta", "información", "horario", "ubicación"]
+        }
     
-    async def classify(self, text: str, context: Dict = None) -> ClassificationResponse:
+    async def classify(self, text: str, context: MessageContext = None) -> ClassificationResponse:
+        """
+        Classify a message using AI models with fallback to keyword-based classification
+        """
         try:
-            messages = [
-                SystemMessage(content=self.system_prompt),
-                HumanMessage(content=f"Classify this message: '{text}'")
-            ]
-            
+            # Prepare context for AI model
+            ai_context = {}
             if context:
-                messages.append(HumanMessage(content=f"Additional context: {context}"))
+                ai_context = {
+                    "message_id": context.message_id,
+                    "sender": context.sender,
+                    "timestamp": context.timestamp.isoformat() if context.timestamp else None,
+                    "group_id": context.group_id,
+                    "has_media": context.has_media,
+                    "message_type": context.message_type
+                }
             
-            response = await self.llm.ainvoke(messages)
+            # Call AI model for classification
+            ai_result = await model_manager.classify_message(text, ai_context)
             
-            # Parse the LLM response and extract classification data
-            result = self._parse_classification_response(response.content, text)
+            # Convert AI result to our schema
+            result = self._convert_ai_result(ai_result, text)
             
             logger.info(
-                "Message classified",
+                "Message classified with AI",
                 text=text[:100],
-                is_incident=result.is_incident,
+                is_incident=result.is_support_incident,
                 confidence=result.confidence,
                 category=result.category
             )
@@ -76,56 +51,99 @@ class MessageClassifier:
             return result
             
         except Exception as e:
-            logger.error("Classification failed", error=str(e))
-            # Return safe default
-            return ClassificationResponse(
-                is_incident=False,
-                confidence=0.0,
-                category="general",
-                trigger_words=[],
-                priority="low",
-                requires_human=True
-            )
+            logger.warning("AI classification failed, using fallback", error=str(e))
+            # Fallback to keyword-based classification
+            return self._fallback_classification(text)
     
-    def _parse_classification_response(self, response: str, original_text: str) -> ClassificationResponse:
-        # Simple keyword-based fallback if LLM response parsing fails
-        text_lower = original_text.lower()
-        
-        urgent_keywords = ["urgente", "no funciona", "cerrado", "sistema caído", "no pueden vender", "error"]
-        technical_keywords = ["pos", "sistema", "software", "aplicación", "red", "internet"]
-        operational_keywords = ["tienda", "inventario", "producto", "cliente", "venta"]
+    def _convert_ai_result(self, ai_result: Dict[str, Any], original_text: str) -> ClassificationResponse:
+        """Convert AI model result to our response schema"""
+        try:
+            return ClassificationResponse(
+                is_support_incident=ai_result.get("is_support_incident", False),
+                confidence=float(ai_result.get("confidence", 0.0)),
+                category=ai_result.get("category", "general_inquiry"),
+                urgency=ai_result.get("urgency", "low"),
+                summary=ai_result.get("summary", ""),
+                requires_followup=ai_result.get("requires_followup", True),
+                suggested_response=ai_result.get("suggested_response", ""),
+                extracted_info=ai_result.get("extracted_info", {}),
+                trigger_words=self._extract_trigger_words(original_text),
+                processing_time=0.0  # Will be set by the caller
+            )
+        except Exception as e:
+            logger.error("Failed to convert AI result", error=str(e), ai_result=ai_result)
+            return self._fallback_classification(original_text)
+    
+    def _fallback_classification(self, text: str) -> ClassificationResponse:
+        """Keyword-based fallback classification when AI fails"""
+        text_lower = text.lower()
         
         # Detect trigger words
-        trigger_words = []
-        for keyword in urgent_keywords + technical_keywords + operational_keywords:
-            if keyword in text_lower:
-                trigger_words.append(keyword)
+        trigger_words = self._extract_trigger_words(text)
         
-        # Determine if it's an incident
-        is_incident = any(keyword in text_lower for keyword in urgent_keywords + ["problema", "ayuda", "falla"])
+        # Determine if it's a support incident
+        incident_indicators = (
+            self.fallback_keywords["urgent"] + 
+            ["problema", "ayuda", "falla", "no puede", "error", "roto"]
+        )
+        is_incident = any(keyword in text_lower for keyword in incident_indicators)
         
-        # Determine category
-        if any(keyword in text_lower for keyword in urgent_keywords):
-            category = "urgent"
-            priority = "urgent"
-        elif any(keyword in text_lower for keyword in technical_keywords):
+        # Determine category and urgency
+        category = "not_support"
+        urgency = "low"
+        
+        if any(keyword in text_lower for keyword in self.fallback_keywords["urgent"]):
             category = "technical"
-            priority = "normal"
-        elif any(keyword in text_lower for keyword in operational_keywords):
-            category = "operational"
-            priority = "normal"
+            urgency = "critical"
+        elif any(keyword in text_lower for keyword in self.fallback_keywords["technical"]):
+            category = "technical"
+            urgency = "medium"
+        elif any(keyword in text_lower for keyword in self.fallback_keywords["billing"]):
+            category = "billing"
+            urgency = "medium"
+        elif any(keyword in text_lower for keyword in self.fallback_keywords["operational"]):
+            category = "general_inquiry"
+            urgency = "low"
+        elif is_incident:
+            category = "technical"
+            urgency = "medium"
+        
+        # Calculate confidence based on trigger words
+        confidence = min(0.8, len(trigger_words) * 0.2) if is_incident else 0.3
+        
+        # Generate basic response
+        if is_incident:
+            suggested_response = "Hemos recibido tu reporte y será atendido por nuestro equipo técnico. Te mantendremos informado del progreso."
         else:
-            category = "general"
-            priority = "low"
-        
-        # Calculate confidence based on trigger words found
-        confidence = min(0.9, len(trigger_words) * 0.3) if is_incident else 0.1
-        
+            suggested_response = "Gracias por tu mensaje. ¿En qué podemos ayudarte?"
+            
         return ClassificationResponse(
-            is_incident=is_incident,
+            is_support_incident=is_incident,
             confidence=confidence,
             category=category,
+            urgency=urgency,
+            summary=f"Mensaje clasificado por palabras clave: {', '.join(trigger_words[:3])}" if trigger_words else "Mensaje general",
+            requires_followup=confidence < 0.6,
+            suggested_response=suggested_response,
+            extracted_info={
+                "classification_method": "keyword_fallback",
+                "trigger_words_count": len(trigger_words)
+            },
             trigger_words=trigger_words,
-            priority=priority,
-            requires_human=confidence < 0.5
+            processing_time=0.0
         )
+    
+    def _extract_trigger_words(self, text: str) -> List[str]:
+        """Extract relevant trigger words from text"""
+        text_lower = text.lower()
+        found_words = []
+        
+        for category, keywords in self.fallback_keywords.items():
+            for keyword in keywords:
+                if keyword in text_lower:
+                    found_words.append(keyword)
+        
+        return list(set(found_words))  # Remove duplicates
+
+# Global instance
+classifier = MessageClassifier()

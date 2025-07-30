@@ -1,0 +1,56 @@
+# Multi-stage Dockerfile for running all tests
+
+FROM node:18-alpine AS node-base
+
+# Install Node.js dependencies
+WORKDIR /app
+COPY services/whatsapp-service/package*.json ./services/whatsapp-service/
+RUN cd services/whatsapp-service && npm ci --only=dev
+
+# Install Python base
+FROM python:3.11-alpine AS python-base
+
+# Install system dependencies
+RUN apk add --no-cache \
+    gcc \
+    musl-dev \
+    libffi-dev \
+    postgresql-dev \
+    nodejs \
+    npm
+
+# Install Python dependencies
+WORKDIR /app
+COPY services/classifier-service/requirements.txt ./services/classifier-service/
+COPY services/ticket-service/requirements.txt ./services/ticket-service/
+COPY tests/requirements-test.txt ./tests/
+
+RUN pip install --no-cache-dir -r services/classifier-service/requirements.txt
+RUN pip install --no-cache-dir -r services/ticket-service/requirements.txt  
+RUN pip install --no-cache-dir -r tests/requirements-test.txt
+
+# Final test runner image
+FROM python-base AS test-runner
+
+# Copy Node.js from node-base
+COPY --from=node-base /usr/local/bin/node /usr/local/bin/
+COPY --from=node-base /usr/local/bin/npm /usr/local/bin/
+COPY --from=node-base /app/services/whatsapp-service/node_modules ./services/whatsapp-service/node_modules
+
+# Copy application code
+COPY services/ ./services/
+COPY tests/ ./tests/
+COPY package*.json ./
+
+# Install test runner dependencies
+RUN npm ci --only=dev
+
+# Create reports directory
+RUN mkdir -p /app/reports
+
+# Set permissions
+RUN chmod -R 755 /app/tests
+RUN chmod -R 755 /app/reports
+
+# Default command runs all tests
+CMD ["npm", "run", "test:all"]

@@ -1,0 +1,154 @@
+version: '3.8'
+
+services:
+  # Redis for testing (separate from production)
+  redis-test:
+    image: redis:7-alpine
+    container_name: whatsapp-bot-redis-test
+    ports:
+      - "6380:6379"  # Different port to avoid conflicts
+    volumes:
+      - redis_test_data:/data
+    command: redis-server --appendonly yes --databases 16
+    networks:
+      - test-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+  # WhatsApp Service Test Environment
+  whatsapp-service-test:
+    build:
+      context: ../../services/whatsapp-service
+      dockerfile: Dockerfile
+    container_name: whatsapp-service-test
+    ports:
+      - "3002:3001"  # Different port for testing
+    environment:
+      - NODE_ENV=test
+      - REDIS_HOST=redis-test
+      - REDIS_PORT=6379
+      - REDIS_DB=1
+      - LOG_LEVEL=debug
+      - WHATSAPP_GROUP_ID=test-group@g.us
+    depends_on:
+      redis-test:
+        condition: service_healthy
+    networks:
+      - test-network
+    volumes:
+      - ../../tests/fixtures:/app/tests/fixtures:ro
+    command: ["npm", "test"]
+
+  # Classifier Service Test Environment
+  classifier-service-test:
+    build:
+      context: ../../services/classifier-service
+      dockerfile: Dockerfile
+    container_name: classifier-service-test
+    ports:
+      - "8002:8001"  # Different port for testing
+    environment:
+      - ENVIRONMENT=test
+      - REDIS_HOST=redis-test
+      - REDIS_PORT=6379
+      - REDIS_DB=1
+      - OPENAI_API_KEY=test-key
+      - GOOGLE_API_KEY=test-key
+      - PRIMARY_AI_MODEL=openai
+      - FALLBACK_AI_MODEL=google
+      - LOG_LEVEL=debug
+    depends_on:
+      redis-test:
+        condition: service_healthy
+    networks:
+      - test-network
+    volumes:
+      - ../../tests/fixtures:/app/tests/fixtures:ro
+    command: ["pytest", "/app/tests/", "-v", "--cov"]
+
+  # Ticket Service Test Environment  
+  ticket-service-test:
+    build:
+      context: ../../services/ticket-service
+      dockerfile: Dockerfile
+    container_name: ticket-service-test
+    ports:
+      - "8004:8003"  # Different port for testing
+    environment:
+      - ENVIRONMENT=test
+      - REDIS_HOST=redis-test
+      - REDIS_PORT=6379
+      - REDIS_DB=1
+      - ZOHO_CLIENT_ID=test-client-id
+      - ZOHO_CLIENT_SECRET=test-client-secret
+      - ZOHO_ORG_ID=test-org-id
+      - LOG_LEVEL=debug
+    depends_on:
+      redis-test:
+        condition: service_healthy
+    networks:
+      - test-network
+    volumes:
+      - ../../tests/fixtures:/app/tests/fixtures:ro
+    command: ["pytest", "/app/tests/", "-v", "--cov"]
+
+  # Test Runner Service
+  test-runner:
+    build:
+      context: ../../
+      dockerfile: tests/docker/Dockerfile.test
+    container_name: test-runner
+    environment:
+      - NODE_ENV=test
+      - PYTHON_ENV=test
+      - REDIS_HOST=redis-test
+      - REDIS_PORT=6379
+      - REDIS_DB=1
+      - WHATSAPP_SERVICE_URL=http://whatsapp-service-test:3001
+      - CLASSIFIER_SERVICE_URL=http://classifier-service-test:8001
+      - TICKET_SERVICE_URL=http://ticket-service-test:8003
+    depends_on:
+      - redis-test
+      - whatsapp-service-test
+      - classifier-service-test
+      - ticket-service-test
+    networks:
+      - test-network
+    volumes:
+      - ../../tests:/app/tests
+      - ../../services:/app/services:ro
+      - test_reports:/app/reports
+    working_dir: /app
+    command: ["npm", "run", "test:integration"]
+
+  # Test Database (optional for future use)
+  postgres-test:
+    image: postgres:15-alpine
+    container_name: postgres-test
+    environment:
+      POSTGRES_DB: whatsappbot_test
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_password
+    ports:
+      - "5433:5432"  # Different port for testing
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+    networks:
+      - test-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U test_user"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+volumes:
+  redis_test_data:
+  postgres_test_data:
+  test_reports:
+
+networks:
+  test-network:
+    driver: bridge

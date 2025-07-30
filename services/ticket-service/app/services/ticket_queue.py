@@ -108,12 +108,13 @@ class TicketQueue:
                     )
                     
                     # Publish success event
-                    await self.redis.publish("tickets:created", {
+                    await self.redis.publish_message("tickets:created", {
                         "ticket_id": ticket_id,
                         "queue_id": queue_id,
                         "subject": ticket_request.subject,
-                        "priority": ticket_request.priority.value,
-                        "contact_id": ticket_request.contact_id
+                        "priority": ticket_request.priority,
+                        "contact_id": ticket_request.contact_id,
+                        "timestamp": datetime.now().isoformat()
                     })
                     
                     processed_count += 1
@@ -176,10 +177,18 @@ class TicketQueue:
             logger.error("Failed to process queue", error=str(e))
             raise
     
+    async def get_queue_length(self) -> int:
+        """Get current queue length"""
+        try:
+            return await self.redis.redis.llen(self.queue_key)
+        except Exception as e:
+            logger.error("Failed to get queue length", error=str(e))
+            return 0
+
     async def get_queue_stats(self) -> Dict:
         """Get queue statistics"""
         try:
-            queue_length = await self.redis.redis.llen(self.queue_key)
+            queue_length = await self.get_queue_length()
             
             return {
                 'queue_length': queue_length,

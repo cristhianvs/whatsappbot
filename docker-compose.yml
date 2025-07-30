@@ -21,11 +21,9 @@ services:
       context: ./services/whatsapp-service
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=development
-      - REDIS_URL=redis://redis:6379
-      - LOG_LEVEL=info
+      - "3001:3001"
+    env_file:
+      - ./services/whatsapp-service/.env
     volumes:
       - ./services/whatsapp-service/sessions:/app/sessions
       - ./services/whatsapp-service/logs:/app/logs
@@ -41,17 +39,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8001:8001"
-    environment:
-      - REDIS_URL=redis://redis:6379
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - OPENAI_MODEL=gpt-4o-mini
-      - LOG_LEVEL=info
+      - "9001:9001"  # Prometheus metrics
+    env_file:
+      - ./services/classifier-service/.env
     depends_on:
       redis:
         condition: service_healthy
     restart: unless-stopped
-    deploy:
-      replicas: 2
 
   # Ticket Service (Python FastAPI)
   ticket-service:
@@ -59,33 +53,16 @@ services:
       context: ./services/ticket-service
       dockerfile: Dockerfile
     ports:
-      - "8002:8002"
-    environment:
-      - REDIS_URL=redis://redis:6379
-      - ZOHO_CLIENT_ID=${ZOHO_CLIENT_ID}
-      - ZOHO_CLIENT_SECRET=${ZOHO_CLIENT_SECRET}
-      - ZOHO_ORG_ID=${ZOHO_ORG_ID}
-      - LOG_LEVEL=info
+      - "8003:8003"
+      - "9003:9003"  # Prometheus metrics
+    env_file:
+      - ./services/ticket-service/.env
     depends_on:
       redis:
         condition: service_healthy
     restart: unless-stopped
 
-  # Conversation Service (Python FastAPI)
-  conversation-service:
-    build:
-      context: ./services/conversation-service
-      dockerfile: Dockerfile
-    ports:
-      - "8003:8003"
-    environment:
-      - REDIS_URL=redis://redis:6379
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - LOG_LEVEL=info
-    depends_on:
-      redis:
-        condition: service_healthy
-    restart: unless-stopped
+  # Remove conversation service for now - not implemented yet
 
 volumes:
   redis_data:

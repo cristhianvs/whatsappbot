@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Any
 from datetime import datetime
 from enum import Enum
 
@@ -11,7 +11,7 @@ class Priority(str, Enum):
 class TicketRequest(BaseModel):
     subject: str = Field(..., description="Ticket subject")
     description: str = Field(..., description="Detailed description")
-    priority: Priority = Field(default=Priority.NORMAL, description="Ticket priority")
+    priority: str = Field(default="normal", description="Ticket priority")
     classification: str = Field(..., description="Request type/classification")
     contact_id: str = Field(..., description="Contact ID in Zoho")
     department_id: str = Field(..., description="Department ID in Zoho")
@@ -24,7 +24,7 @@ class TicketRequest(BaseModel):
     mentioned_users: List[str] = Field(default=[], description="@mentioned users")
     
     # Metadata
-    reporter_id: str = Field(..., description="Who reports the issue")
+    reporter_id: Optional[str] = Field(None, description="Who reports the issue")
     affected_id: Optional[str] = Field(None, description="Who is affected (if different)")
     
     # WhatsApp context
@@ -58,3 +58,11 @@ class Department(BaseModel):
     id: str
     name: str
     email: Optional[str] = None
+
+class HealthResponse(BaseModel):
+    status: str
+    service: str
+    timestamp: datetime
+    zoho_connected: bool
+    redis_connected: bool
+    queue_length: int

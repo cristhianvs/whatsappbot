@@ -1,4 +1,4 @@
-const { makeWASocket, DisconnectReason, useMultiFileAuthState } = require('@whiskeysockets/baileys');
+const { makeWASocket, DisconnectReason, useMultiFileAuthState, downloadMediaMessage } = require('@whiskeysockets/baileys');
 const { createClient } = require('redis');
 const logger = require('./utils/logger');
 
@@ -12,9 +12,16 @@ class WhatsAppService {
   async initialize() {
     try {
       // Initialize Redis connection
-      this.redis = createClient({
-        url: process.env.REDIS_URL || 'redis://localhost:6379'
-      });
+      const redisHost = process.env.REDIS_HOST || 'localhost';
+      const redisPort = process.env.REDIS_PORT || 6379;
+      const redisPassword = process.env.REDIS_PASSWORD;
+      
+      let redisUrl = `redis://${redisHost}:${redisPort}`;
+      if (redisPassword) {
+        redisUrl = `redis://:${redisPassword}@${redisHost}:${redisPort}`;
+      }
+      
+      this.redis = createClient({ url: redisUrl });
       
       await this.redis.connect();
       logger.info('Connected to Redis');
@@ -87,6 +94,12 @@ class WhatsAppService {
   }
 
   async processGroupMessage(message) {
+    // Only process messages from configured group
+    const targetGroupId = process.env.WHATSAPP_GROUP_ID;
+    if (targetGroupId && message.key.remoteJid !== targetGroupId) {
+      return;
+    }
+
     const messageData = {
       id: message.key.id,
       from: message.key.participant || message.key.remoteJid,
@@ -96,18 +109,40 @@ class WhatsAppService {
       timestamp: message.messageTimestamp,
       hasMedia: !!(message.message?.imageMessage || 
                    message.message?.documentMessage ||
-                   message.message?.videoMessage)
+                   message.message?.videoMessage),
+      messageType: this.getMessageType(message.message),
+      rawMessage: message.message
     };
 
-    // Publish to Redis for processing by other services
-    await this.redis.publish('whatsapp:messages:inbound', JSON.stringify(messageData));
-    
-    logger.info('Message forwarded to processing queue:', {
-      messageId: messageData.id,
-      from: messageData.from,
-      hasText: !!messageData.text,
-      hasMedia: messageData.hasMedia
-    });
+    // Skip empty messages
+    if (!messageData.text && !messageData.hasMedia) {
+      return;
+    }
+
+    try {
+      // Publish to Redis for processing by other services
+      await this.redis.publish('whatsapp:messages:inbound', JSON.stringify(messageData));
+      
+      logger.info('Message forwarded to processing queue:', {
+        messageId: messageData.id,
+        from: messageData.from,
+        hasText: !!messageData.text,
+        hasMedia: messageData.hasMedia,
+        type: messageData.messageType
+      });
+    } catch (error) {
+      logger.error('Failed to publish message to Redis:', error);
+    }
+  }
+
+  getMessageType(message) {
+    if (message.conversation) return 'text';
+    if (message.extendedTextMessage) return 'extended_text';
+    if (message.imageMessage) return 'image';
+    if (message.documentMessage) return 'document';
+    if (message.videoMessage) return 'video';
+    if (message.audioMessage) return 'audio';
+    return 'unknown';
   }
 
   async sendMessage(jid, text, mentions = []) {

@@ -1,0 +1,88 @@
+{
+  "name": "whatsapp-support-bot",
+  "version": "1.0.0",
+  "description": "WhatsApp Support Bot with AI Classification and Zoho Desk Integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:unit",
+    "test:unit": "npm run test:whatsapp && npm run test:python",
+    "test:whatsapp": "cd services/whatsapp-service && npm test",
+    "test:python": "pytest tests/unit/classifier-service/ tests/unit/ticket-service/ -v",
+    "test:integration": "pytest tests/integration/ -v",
+    "test:e2e": "pytest tests/e2e/ -v",
+    "test:all": "npm run test:unit && npm run test:integration",
+    "test:coverage": "npm run test:coverage:whatsapp && npm run test:coverage:python",
+    "test:coverage:whatsapp": "cd services/whatsapp-service && npm run test:coverage",
+    "test:coverage:python": "pytest tests/ --cov=services --cov-report=html --cov-report=term",
+    "test:watch": "npm run test:unit -- --watch",
+    "test:ci": "npm run test:all -- --ci",
+    "lint": "npm run lint:js && npm run lint:python",
+    "lint:js": "cd services/whatsapp-service && npm run lint",
+    "lint:python": "flake8 services/classifier-service services/ticket-service tests/",
+    "format": "npm run format:js && npm run format:python",
+    "format:js": "cd services/whatsapp-service && npm run format",
+    "format:python": "black services/classifier-service services/ticket-service tests/",
+    "docker:test": "docker-compose -f tests/docker/docker-compose.test.yml up --build --abort-on-container-exit",
+    "docker:test:down": "docker-compose -f tests/docker/docker-compose.test.yml down -v",
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "logs": "docker-compose logs -f",
+    "build": "docker-compose build",
+    "dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
+    "prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "@types/jest": "^29.5.5",
+    "eslint": "^8.49.0",
+    "prettier": "^3.0.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "cross-env": "^7.0.3"
+  },
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "ai",
+    "classification",
+    "zoho",
+    "support",
+    "microservices",
+    "fastapi",
+    "nodejs"
+  ],
+  "author": "WhatsApp Bot Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/whatsapp-support-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/whatsapp-support-bot/issues"
+  },
+  "homepage": "https://github.com/your-org/whatsapp-support-bot#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "services/whatsapp-service/**/*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "services/**/*.py": [
+      "black",
+      "flake8"
+    ],
+    "tests/**/*.py": [
+      "black",
+      "flake8"
+    ]
+  }
+}
