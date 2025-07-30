@@ -1,9 +1,13 @@
 import pytest
+import sys
+import os
 from unittest.mock import AsyncMock, patch, MagicMock
 import json
-import os
 
-from services.classifier_service.app.ai.model_manager import AIModelManager, ModelProvider
+# Add services to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'services', 'classifier-service'))
+
+from app.ai.model_manager import AIModelManager, ModelProvider
 
 
 class TestAIModelManager:

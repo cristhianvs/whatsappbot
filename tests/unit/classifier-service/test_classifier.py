@@ -1,9 +1,14 @@
 import pytest
+import sys
+import os
 from unittest.mock import AsyncMock, MagicMock, patch
 from datetime import datetime
 
-from services.classifier_service.app.agents.classifier import MessageClassifier, classifier
-from services.classifier_service.app.models.schemas import MessageContext, ClassificationResponse
+# Add services to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'services', 'classifier-service'))
+
+from app.agents.classifier import MessageClassifier, classifier
+from app.models.schemas import MessageContext, ClassificationResponse
 
 
 class TestMessageClassifier:
@@ -40,7 +45,7 @@ class TestMessageClassifier:
             "extracted_info": {"user_type": "customer"}
         }
 
-        with patch('services.classifier_service.app.agents.classifier.model_manager') as mock_manager:
+        with patch('app.agents.classifier.model_manager') as mock_manager:
             mock_manager.classify_message.return_value = mock_ai_result
             
             result = await classifier_instance.classify("El sistema POS no funciona", sample_context)
@@ -55,7 +60,7 @@ class TestMessageClassifier:
     @pytest.mark.asyncio
     async def test_classify_ai_failure_fallback(self, classifier_instance, sample_context):
         """Test fallback to keyword classification when AI fails"""
-        with patch('services.classifier_service.app.agents.classifier.model_manager') as mock_manager:
+        with patch('app.agents.classifier.model_manager') as mock_manager:
             mock_manager.classify_message.side_effect = Exception("AI model failed")
             
             result = await classifier_instance.classify("El sistema POS no funciona urgente", sample_context)
@@ -167,7 +172,7 @@ class TestMessageClassifier:
     @pytest.mark.asyncio
     async def test_classify_with_context(self, classifier_instance, sample_context):
         """Test classification with message context"""
-        with patch('services.classifier_service.app.agents.classifier.model_manager') as mock_manager:
+        with patch('app.agents.classifier.model_manager') as mock_manager:
             mock_manager.classify_message.return_value = {
                 "is_support_incident": True,
                 "confidence": 0.8,
