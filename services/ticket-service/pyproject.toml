@@ -1,0 +1,84 @@
+[project]
+name = "ticket-service"
+version = "1.0.0"
+description = "Zoho Desk ticket service with OAuth2 and queue management"
+authors = [
+    {name = "WhatsApp Bot Team", email = "support@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi>=0.104.1",
+    "uvicorn>=0.24.0",
+    "pydantic>=2.5.0",
+    "redis>=5.0.1",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "structlog>=23.2.0",
+    "prometheus-client>=0.19.0",
+    "httpx>=0.25.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.1",
+    "pytest-mock>=3.11.1",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+asyncio_mode = "auto"
+addopts = [
+    "--cov=app",
+    "--cov-report=html",
+    "--cov-report=term-missing",
+    "--verbose",
+    "-ra"
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests", 
+    "slow: Slow running tests",
+]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+# Scripts for UV
+[project.scripts]
+zoho-auth = "setup_zoho_auth:main"
+start-service = "app.main:main"

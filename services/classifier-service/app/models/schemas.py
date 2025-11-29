@@ -2,6 +2,19 @@ from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
+class QuotedMessage(BaseModel):
+    """Mensaje citado/respondido en WhatsApp"""
+    id: str
+    text: str
+    participant: str  # Quien envió el mensaje original
+
+class ContextInfo(BaseModel):
+    """Información de contexto del mensaje de WhatsApp"""
+    quoted_message_id: Optional[str] = None
+    mentioned_jids: List[str] = []
+    is_forwarded: bool = False
+    forwarding_score: Optional[int] = None
+
 class MessageData(BaseModel):
     id: str
     text: str
@@ -10,6 +23,10 @@ class MessageData(BaseModel):
     group_id: Optional[str] = None
     has_media: bool = False
     message_type: str = "text"
+    quoted_message: Optional[QuotedMessage] = None
+    context_info: Optional[ContextInfo] = None
+    chat_type: Optional[str] = None  # 'group' | 'individual' | 'broadcast'
+    participant: Optional[str] = None  # En grupos, quien envió el mensaje
 
 class ClassificationRequest(BaseModel):
     message: MessageData

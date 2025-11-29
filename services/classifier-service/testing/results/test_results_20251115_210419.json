@@ -1,0 +1,2578 @@
+[
+  {
+    "es_incidencia": true,
+    "confianza": 0.99,
+    "categoria": "POS",
+    "prioridad": "alta",
+    "metadata": {
+      "ubicacion": {
+        "tienda": "101"
+      },
+      "sistema_afectado": "POS",
+      "palabras_clave": [
+        "no deja",
+        "quitar",
+        "cambiar lote",
+        "pendiente cerrar la venta",
+        "ayuda"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Porfavor quitar el tema de los lotes,caso de pasar varias playeras al querer sacar el ticket resulto que se selecciono una si existencia en el lote y no deja quitar la linea y cambiar lote con existencia ,en tienda 101 ,quedo pendiente cerrar la venta de asu ayuda para 101 porfavor\n‎[11/08/25, 5:21:26 p.m.] Sistemas: ‎<adjunto: 00001463-PHOTO-2025-08-11-17-21-26.jpg>",
+      "usuario": "~ EDNA ALICIA CRUZ RAMOS",
+      "fecha": "11/08/25",
+      "hora": "5:08:05 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.95,
+      "razonamiento": "Mensaje reporta problema técnico específico en POS donde no permite quitar línea ni cambiar lote, impidiendo completar una venta en tienda 101",
+      "categoria": "POS",
+      "prioridad": "alta",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "101"
+        },
+        "sistema_afectado": "POS",
+        "palabras_clave": [
+          "no deja",
+          "quitar",
+          "cambiar lote",
+          "pendiente cerrar la venta",
+          "ayuda"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 4177.87,
+        "tokens_input": 2009,
+        "tokens_output": 178,
+        "costo_estimado_usd": 0.008697
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje describe un problema técnico en el sistema que impide cambiar el lote de un artículo en la tienda 101, lo que afecta la capacidad de cerrar una venta.",
+      "categoria": "POS",
+      "prioridad": "alta",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "101"
+        },
+        "sistema_afectado": "POS",
+        "palabras_clave": [
+          "no deja",
+          "quitar la línea",
+          "cambiar lote",
+          "venta"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 7341.69,
+        "tokens_input": 1597,
+        "tokens_output": 136,
+        "costo_estimado_usd": 0.00032114999999999997
+      }
+    }
+  },
+  {
+    "mensaje_original": {
+      "fecha": "06/08/25",
+      "hora": "12:17:44 p.m.",
+      "usuario": "Sistemas",
+      "texto": "@⁨José Ramón López Turistore⁩",
+      "texto_completo": "@⁨José Ramón López Turistore⁩"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u2068' in position 15: character maps to <undefined>"
+  },
+  {
+    "mensaje_original": {
+      "fecha": "25/09/25",
+      "hora": "1:37:28 p.m.",
+      "usuario": "~ Somnium.9920",
+      "texto": "Holaaaaaa, holaaa ya se esta trabajando para mandar el precio de venta.👀",
+      "texto_completo": "Holaaaaaa, holaaa ya se esta trabajando para mandar el precio de venta.👀"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\U0001f440' in position 85: character maps to <undefined>"
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.974,
+    "categoria": "Proveedores",
+    "prioridad": "media",
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": "reportes de proveedor",
+      "palabras_clave": [
+        "sale en blanco",
+        "no ven",
+        "ordenes"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Buen día, igual tengo reportes de provedor que todo sale en blanco\nNo ven las ordenes",
+      "usuario": "Patricia  Montejo",
+      "fecha": "20/10/25",
+      "hora": "8:52:49 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.92,
+      "razonamiento": "Mensaje reporta problema técnico específico: reportes de proveedor aparecen en blanco y no se visualizan las órdenes, indica falla en funcionalidad del sistema",
+      "categoria": "Proveedores",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "reportes de proveedor",
+        "palabras_clave": [
+          "sale en blanco",
+          "no ven",
+          "ordenes"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 4041.18,
+        "tokens_input": 1889,
+        "tokens_output": 173,
+        "costo_estimado_usd": 0.008262
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje indica un problema con la visualización de órdenes relacionadas con proveedores, lo que sugiere una falla técnica en el sistema.",
+      "categoria": "Proveedores",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "Proveedores",
+        "palabras_clave": [
+          "sale en blanco",
+          "no ven",
+          "órdenes"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4963.98,
+        "tokens_input": 1504,
+        "tokens_output": 125,
+        "costo_estimado_usd": 0.0003006
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.722,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": null,
+      "palabras_clave": []
+    },
+    "consenso": {
+      "tipo": "discrepancia",
+      "modelo_primario": "openai",
+      "requiere_revision": true
+    },
+    "mensaje_original": {
+      "texto": "Nadie responde su apoyo por favor",
+      "usuario": "Roxana Ingrid Morlet",
+      "fecha": "15/08/25",
+      "hora": "9:21:53 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.75,
+      "razonamiento": "Solicitud de apoyo técnico con tono de urgencia, sugiere que hay un problema no resuelto que requiere atención del equipo de soporte",
+      "categoria": "Otro",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": [
+          "apoyo"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3579.12,
+        "tokens_input": 1873,
+        "tokens_output": 148,
+        "costo_estimado_usd": 0.007839
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje solicita apoyo pero no indica un problema técnico específico relacionado con el sistema o funcionalidad.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3775.14,
+        "tokens_input": 1490,
+        "tokens_output": 100,
+        "costo_estimado_usd": 0.0002835
+      }
+    }
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.99,
+    "categoria": "Inventario",
+    "prioridad": "media",
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": "CEDI",
+      "palabras_clave": [
+        "no pueden",
+        "dar entrada",
+        "tema persiste",
+        "ticket"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Hola, buenos día!!!\nNos pueden ayudar con el Ticket 16046, aun no pueden dar entrada en el cedi de bahía principe, ya se realizaron la indicaciones que nos dieron pero el tema persiste\nQuedo al pendiente de sus comentarios...\n‎[18/08/25, 9:04:01 a.m.] Iliana Rios Supervisora ⭐: ‎<adjunto: 00001722-PHOTO-2025-08-18-09-04-01.jpg>",
+      "usuario": "Manuel Villalva",
+      "fecha": "18/08/25",
+      "hora": "8:50:52 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.95,
+      "razonamiento": "Mensaje reporta seguimiento a ticket existente donde persiste un problema técnico en CEDI después de aplicar soluciones sugeridas",
+      "categoria": "Inventario",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "CEDI",
+        "palabras_clave": [
+          "no pueden",
+          "dar entrada",
+          "tema persiste",
+          "ticket"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3913.3,
+        "tokens_input": 1994,
+        "tokens_output": 159,
+        "costo_estimado_usd": 0.008367
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje indica que hay un problema persistente con la entrada en el CEDI, lo que sugiere un fallo técnico que requiere atención.",
+      "categoria": "Otro",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "CEDI",
+        "palabras_clave": [
+          "ayudar",
+          "no pueden dar entrada",
+          "tema persiste"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4486.52,
+        "tokens_input": 1588,
+        "tokens_output": 128,
+        "costo_estimado_usd": 0.00031499999999999996
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.85,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "ya lo estamos revisando al parecer es un tema de lote",
+      "usuario": "Sistemas",
+      "fecha": "18/09/25",
+      "hora": "11:51:17 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "Mensaje indica que ya están revisando un problema existente, es una actualización de estatus de resolución en proceso, no una nueva incidencia",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "lote",
+        "palabras_clave": [
+          "revisando",
+          "lote"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3581.32,
+        "tokens_input": 1878,
+        "tokens_output": 142,
+        "costo_estimado_usd": 0.007764
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje indica que se está revisando un tema, pero no reporta un problema técnico específico ni solicita ayuda. No hay evidencia clara de un error o fallo.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4848.74,
+        "tokens_input": 1495,
+        "tokens_output": 114,
+        "costo_estimado_usd": 0.00029265
+      }
+    }
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.974,
+    "categoria": "Inventario",
+    "prioridad": "media",
+    "metadata": {
+      "ubicacion": {
+        "tienda": "Playaland"
+      },
+      "sistema_afectado": "sistema de resurtido",
+      "palabras_clave": [
+        "no se puede resurtir",
+        "no entra",
+        "apoyo"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Buen día\nAcabo de estar en Playaland y esta mercancía ya tiene días q no se puede resurtir es por un solo artículo que no entra toda la mercancía por favor nos pueden apoyar? \n‎[28/10/25, 12:04:00 p.m.] Jose Santamaria Turistore: ‎<adjunto: 00004363-PHOTO-2025-10-28-12-04-00.jpg>",
+      "usuario": "Victoria Bonilla",
+      "fecha": "28/10/25",
+      "hora": "11:58:51 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.92,
+      "razonamiento": "Mensaje reporta problema técnico específico: mercancía que no se puede resurtir por días debido a un artículo que impide el proceso completo. Solicita apoyo técnico urgente.",
+      "categoria": "Inventario",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "Playaland"
+        },
+        "sistema_afectado": "sistema de resurtido",
+        "palabras_clave": [
+          "no se puede resurtir",
+          "no entra",
+          "apoyo"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 4203.81,
+        "tokens_input": 1979,
+        "tokens_output": 181,
+        "costo_estimado_usd": 0.008652
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje indica que hay un problema para resurtir mercancía en Playaland, lo que sugiere una falla en el sistema de inventario relacionado con un artículo específico.",
+      "categoria": "Inventario",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "Playaland"
+        },
+        "sistema_afectado": "Inventario",
+        "palabras_clave": [
+          "no se puede resurtir",
+          "artículo",
+          "apoyar"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4204.82,
+        "tokens_input": 1579,
+        "tokens_output": 140,
+        "costo_estimado_usd": 0.00032085
+      }
+    }
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.974,
+    "categoria": "Inventario",
+    "prioridad": "alta",
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": "inventario",
+      "palabras_clave": [
+        "apoyo",
+        "insisto",
+        "nada para vender",
+        "producto está detenido"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Buen día por favor insisto con el apoyo ya lo tengo nada para vender en refri el producto está detenido en tienda",
+      "usuario": "Roxana Ingrid Morlet",
+      "fecha": "15/08/25",
+      "hora": "9:21:36 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.92,
+      "razonamiento": "Mensaje reporta problema operativo crítico donde el producto está detenido y no puede vender, solicita apoyo con insistencia indicando urgencia",
+      "categoria": "Inventario",
+      "prioridad": "alta",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "inventario",
+        "palabras_clave": [
+          "apoyo",
+          "insisto",
+          "nada para vender",
+          "producto está detenido"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3875.35,
+        "tokens_input": 1896,
+        "tokens_output": 167,
+        "costo_estimado_usd": 0.008192999999999999
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje indica que hay un problema con un producto detenido en tienda, lo que sugiere una incidencia técnica relacionada con el sistema de inventario o ventas.",
+      "categoria": "Inventario",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "inventario",
+        "palabras_clave": [
+          "apoyo",
+          "producto detenido",
+          "nada para vender"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3745.61,
+        "tokens_input": 1507,
+        "tokens_output": 131,
+        "costo_estimado_usd": 0.00030465
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.95,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Team, les pedimos de favor un manual básico con los cambios realizados en el sistema; un Manuel breve de consulta para tiendas, ya que hay temas que no se revisaron en las reuniones previas a la migración. Y van a seguir surgiendo dudas, este manual básico que nos permita consultar de forma inmediata y no saturar a sistemas. Una guía de apoyo.\nGracias ‎<Se editó este mensaje.>",
+      "usuario": "Diana Reyes Supervisora",
+      "fecha": "01/08/25",
+      "hora": "9:24:03 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.95,
+      "razonamiento": "Solicitud de documentación/manual de apoyo, no reporta problema técnico específico sino necesidad de material de consulta",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": [
+          "manual",
+          "cambios",
+          "sistema",
+          "dudas"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3500.42,
+        "tokens_input": 1971,
+        "tokens_output": 147,
+        "costo_estimado_usd": 0.008118
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.95,
+      "razonamiento": "El mensaje solicita un manual de consulta y no reporta un problema técnico específico en el sistema. Es una solicitud de información.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4843.04,
+        "tokens_input": 1569,
+        "tokens_output": 106,
+        "costo_estimado_usd": 0.00029895
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.99,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Gracias",
+      "usuario": "Enedina Sup Vta",
+      "fecha": "06/08/25",
+      "hora": "2:02:03 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje de agradecimiento sin contenido técnico ni reporte de problema",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3016.77,
+        "tokens_input": 1866,
+        "tokens_output": 118,
+        "costo_estimado_usd": 0.007368
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje de agradecimiento/confirmación sin contenido técnico",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3874.0,
+        "tokens_input": 1484,
+        "tokens_output": 92,
+        "costo_estimado_usd": 0.0002778
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.85,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Me pueden ayudar a resolver este ID 16011",
+      "usuario": "Enedina Sup Vta",
+      "fecha": "15/08/25",
+      "hora": "3:13:14 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "Solicitud de ayuda con un ID específico (posiblemente ticket existente), pero no reporta un problema técnico nuevo que requiera crear nueva incidencia",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": [
+          "ayudar",
+          "resolver",
+          "ID"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3706.85,
+        "tokens_input": 1875,
+        "tokens_output": 147,
+        "costo_estimado_usd": 0.00783
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje solicita ayuda para resolver un ID, pero no proporciona información sobre un problema técnico específico o error, por lo que no se clasifica como incidencia.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4651.42,
+        "tokens_input": 1493,
+        "tokens_output": 112,
+        "costo_estimado_usd": 0.00029115
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.722,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {
+      "ubicacion": {
+        "tienda": "301"
+      },
+      "sistema_afectado": null,
+      "palabras_clave": []
+    },
+    "consenso": {
+      "tipo": "discrepancia",
+      "modelo_primario": "openai",
+      "requiere_revision": true
+    },
+    "mensaje_original": {
+      "texto": "Su apoyo por favor a la 301 está pendiente ingresar la factura de NADRO",
+      "usuario": "Rubí Canché (Turistore)",
+      "fecha": "29/08/25",
+      "hora": "12:55:50 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "Solicitud de apoyo técnico para resolver problema específico con ingreso de factura en tienda, indica funcionalidad que no se puede completar",
+      "categoria": "Facturación",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "301"
+        },
+        "sistema_afectado": "facturación",
+        "palabras_clave": [
+          "apoyo",
+          "pendiente",
+          "ingresar",
+          "factura"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 4158.93,
+        "tokens_input": 1886,
+        "tokens_output": 165,
+        "costo_estimado_usd": 0.008133
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje solicita apoyo para ingresar una factura, pero no indica un problema técnico específico ni un error en el sistema.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": "301"
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3189.3,
+        "tokens_input": 1499,
+        "tokens_output": 105,
+        "costo_estimado_usd": 0.00028785
+      }
+    }
+  },
+  {
+    "mensaje_original": {
+      "fecha": "03/09/25",
+      "hora": "4:23:17 p.m.",
+      "usuario": "Miriam Supervisora",
+      "texto": "Serán mixtas las unidades? Igualmente en tienda 111",
+      "texto_completo": "Serán mixtas las unidades? Igualmente en tienda 111\n‎[03/09/25, 4:42:52 p.m.] Miriam Supervisora: ‎<adjunto: 00002759-PHOTO-2025-09-03-16-42-52.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 67: character maps to <undefined>"
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.807,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": null,
+      "palabras_clave": []
+    },
+    "consenso": {
+      "tipo": "discrepancia",
+      "modelo_primario": "openai",
+      "requiere_revision": true
+    },
+    "mensaje_original": {
+      "texto": "Compras de su apoyo por favor a las tiendas 401 y 402\nTienen pendiente el ingreso de las facturas de Walmart y Pepsi ",
+      "usuario": "Rubí Canché (Turistore)",
+      "fecha": "18/08/25",
+      "hora": "3:26:51 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "Solicitud de apoyo técnico para problema específico con ingreso de facturas en tiendas identificadas, indica funcionalidad que no está operando correctamente",
+      "categoria": "Facturación",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "401, 402"
+        },
+        "sistema_afectado": "facturación",
+        "palabras_clave": [
+          "apoyo",
+          "pendiente",
+          "ingreso",
+          "facturas"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 4150.93,
+        "tokens_input": 1903,
+        "tokens_output": 170,
+        "costo_estimado_usd": 0.008258999999999999
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.95,
+      "razonamiento": "El mensaje solicita apoyo logístico para el ingreso de facturas, sin reportar un problema técnico específico.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4034.15,
+        "tokens_input": 1513,
+        "tokens_output": 102,
+        "costo_estimado_usd": 0.00028815
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.722,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": null,
+      "palabras_clave": []
+    },
+    "consenso": {
+      "tipo": "discrepancia",
+      "modelo_primario": "openai",
+      "requiere_revision": true
+    },
+    "mensaje_original": {
+      "texto": "Queda una semana para terminar el mes y veo que siguen varios temas sin resolverse de fondo en gastos los estamos haciendo manual por fuera del sistema. Cómo vamos a estar con el cierre? @⁨Sistemas⁩ @⁨Verónica González Turistore⁩\n‎[23/08/25, 1:17:24 p.m.] Diana Reyes C: ‎<adjunto: 00002162-PHOTO-2025-08-23-13-17-24.jpg>",
+      "usuario": "Antonio Robles Turistore",
+      "fecha": "23/08/25",
+      "hora": "1:12:19 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "Mensaje reporta problemas sistémicos no resueltos que requieren procesos manuales fuera del sistema, con preocupación por el cierre mensual. Menciona específicamente 'gastos' y etiqueta a Sistemas",
+      "categoria": "Sistema SAP",
+      "prioridad": "alta",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "gastos",
+        "palabras_clave": [
+          "temas sin resolverse",
+          "manual por fuera del sistema",
+          "gastos"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 4513.95,
+        "tokens_input": 2000,
+        "tokens_output": 185,
+        "costo_estimado_usd": 0.008775
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje expresa preocupación sobre temas no resueltos, pero no menciona un problema técnico específico ni un error en el sistema. Se refiere a un proceso manual, pero no indica que haya un fallo en el sistema SAP.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4062.88,
+        "tokens_input": 1589,
+        "tokens_output": 126,
+        "costo_estimado_usd": 0.00031394999999999996
+      }
+    }
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.722,
+    "categoria": "Otro",
+    "prioridad": "media",
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": "pack",
+      "palabras_clave": [
+        "error",
+        "averiguando",
+        "intermitencia"
+      ]
+    },
+    "consenso": {
+      "tipo": "discrepancia",
+      "modelo_primario": "openai",
+      "requiere_revision": true
+    },
+    "mensaje_original": {
+      "texto": "Esto es un error del pack, que estamos averiguando, si es por una intermitencia del S.A.T.",
+      "usuario": "Sistemas",
+      "fecha": "22/09/25",
+      "hora": "5:29:57 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "Mensaje es una explicación/actualización sobre un error ya conocido que está siendo investigado, no es un reporte de nueva incidencia",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "SAT",
+        "palabras_clave": [
+          "error",
+          "averiguando",
+          "intermitencia"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3432.8,
+        "tokens_input": 1892,
+        "tokens_output": 146,
+        "costo_estimado_usd": 0.007866000000000001
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje menciona un error relacionado con el pack, lo que indica un problema técnico que se está investigando, aunque no se especifica claramente el sistema afectado.",
+      "categoria": "Otro",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "pack",
+        "palabras_clave": [
+          "error",
+          "averiguando",
+          "intermitencia"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 1535.86,
+        "tokens_input": 1508,
+        "tokens_output": 130,
+        "costo_estimado_usd": 0.00030419999999999997
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.807,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {
+      "ubicacion": {
+        "tienda": "912"
+      },
+      "sistema_afectado": null,
+      "palabras_clave": []
+    },
+    "consenso": {
+      "tipo": "discrepancia",
+      "modelo_primario": "openai",
+      "requiere_revision": true
+    },
+    "mensaje_original": {
+      "texto": "Buenos dias, nos apoyan con los codigos de articulos para poder generar las revisiones, al igual de la sucursal 912",
+      "usuario": "Jose Santamaria Turistore",
+      "fecha": "14/11/25",
+      "hora": "9:38:33 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "Solicitud de apoyo técnico para obtener códigos de artículos necesarios para generar revisiones, indica problema operativo que impide completar proceso",
+      "categoria": "Inventario",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "912"
+        },
+        "sistema_afectado": "revisiones",
+        "palabras_clave": [
+          "apoyan",
+          "codigos de articulos",
+          "generar las revisiones"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3694.79,
+        "tokens_input": 1893,
+        "tokens_output": 166,
+        "costo_estimado_usd": 0.008169
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.95,
+      "razonamiento": "El mensaje solicita apoyo con información sobre códigos de artículos, pero no reporta un problema técnico específico.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": "912"
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 2811.92,
+        "tokens_input": 1511,
+        "tokens_output": 102,
+        "costo_estimado_usd": 0.00028785
+      }
+    }
+  },
+  {
+    "mensaje_original": {
+      "fecha": "01/10/25",
+      "hora": "11:20:57 a.m.",
+      "usuario": "Roxana Ingrid Morlet",
+      "texto": "Por favor el apoyo",
+      "texto_completo": "Por favor el apoyo\n‎[01/10/25, 11:56:05 a.m.] Roxana Ingrid Morlet: ‎<adjunto: 00003695-PHOTO-2025-10-01-11-56-05.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 34: character maps to <undefined>"
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.935,
+    "categoria": "Ordenes de Compra",
+    "prioridad": "media",
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": "validación OC",
+      "palabras_clave": [
+        "alerta",
+        "marca",
+        "no se resuelve el problema",
+        "no pasa"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Me refiero a la alerta que le da a la tienda, cuando esta validando el precio. Porque pues si solo le marca alguno (s) es el precio de ese producto es el que mandamos una y otra vez y como le sigue marcando ese pues de ahí no pasa, no se resuelve el problema,, como podemos ver cuales son los otros sku de la oc en cuestión.",
+      "usuario": "Nataly Ake Turistore",
+      "fecha": "23/10/25",
+      "hora": "1:12:59 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "Mensaje describe un problema técnico específico: sistema marca alerta de precio repetidamente sin resolverse, impidiendo continuar con validación de OC. Solicita apoyo para identificar otros SKUs afectados",
+      "categoria": "Ordenes de Compra",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "validación OC",
+        "palabras_clave": [
+          "alerta",
+          "marca",
+          "no se resuelve el problema",
+          "no pasa"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 5137.69,
+        "tokens_input": 1959,
+        "tokens_output": 187,
+        "costo_estimado_usd": 0.008681999999999999
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje describe un problema con la validación de precios en la tienda, indicando que no se resuelve y que afecta el proceso. Esto sugiere una incidencia técnica relacionada con precios.",
+      "categoria": "Precios",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "validación de precios",
+        "palabras_clave": [
+          "alerta",
+          "marca",
+          "precio",
+          "no se resuelve",
+          "problema"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4429.99,
+        "tokens_input": 1562,
+        "tokens_output": 145,
+        "costo_estimado_usd": 0.0003213
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.99,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Este",
+      "usuario": "Alvaro May Turistore",
+      "fecha": "31/07/25",
+      "hora": "2:41:44 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje de una sola palabra 'Este' sin contexto técnico, parece ser parte de una conversación incompleta o respuesta fragmentada",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3193.59,
+        "tokens_input": 1864,
+        "tokens_output": 134,
+        "costo_estimado_usd": 0.007601999999999999
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje incompleto sin contenido técnico o indicación de problema.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3149.85,
+        "tokens_input": 1484,
+        "tokens_output": 93,
+        "costo_estimado_usd": 0.0002784
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.95,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Estoy, ya quedó todo, con excepción de una línea que estamos revisando",
+      "usuario": "Sistemas",
+      "fecha": "25/08/25",
+      "hora": "1:56:39 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "Mensaje indica que un proceso ya se completó exitosamente, con solo una línea pendiente de revisión. No reporta error o problema técnico, sino estatus de avance",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": [
+          "ya quedó",
+          "revisando"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3634.62,
+        "tokens_input": 1885,
+        "tokens_output": 154,
+        "costo_estimado_usd": 0.007965
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.95,
+      "razonamiento": "Mensaje de confirmación sobre el estado de una tarea, sin contenido técnico que indique un problema.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3212.9,
+        "tokens_input": 1498,
+        "tokens_output": 100,
+        "costo_estimado_usd": 0.0002847
+      }
+    }
+  },
+  {
+    "mensaje_original": {
+      "fecha": "17/09/25",
+      "hora": "2:08:54 p.m.",
+      "usuario": "Enedina Sup Vta",
+      "texto": "de su ayuda para sucursal 518... seguimiento por favor..",
+      "texto_completo": "de su ayuda para sucursal 518... seguimiento por favor..\n‎[17/09/25, 2:09:18 p.m.] Enedina Sup Vta: ‎<adjunto: 00003192-PHOTO-2025-09-17-14-09-18.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 72: character maps to <undefined>"
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.99,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Claro.",
+      "usuario": "Aldo Castorella",
+      "fecha": "02/08/25",
+      "hora": "9:06:51 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje de confirmación/aceptación sin contenido técnico ni reporte de problema",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3048.31,
+        "tokens_input": 1867,
+        "tokens_output": 125,
+        "costo_estimado_usd": 0.007476
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje de confirmación sin contenido técnico",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 2540.47,
+        "tokens_input": 1485,
+        "tokens_output": 89,
+        "costo_estimado_usd": 0.00027614999999999996
+      }
+    }
+  },
+  {
+    "mensaje_original": {
+      "fecha": "21/08/25",
+      "hora": "5:10:31 p.m.",
+      "usuario": "Rubí Canché (Turistore)",
+      "texto": "Su apoyo a la 410 no les permite cerrar el traspaso de Citees",
+      "texto_completo": "Su apoyo a la 410 no les permite cerrar el traspaso de Citees\n‎[21/08/25, 5:14:11 p.m.] Paloma Coss y Leon Turistore: ‎<adjunto: 00002072-PHOTO-2025-08-21-17-14-11.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 77: character maps to <undefined>"
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.85,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Buen día!\n Para surtir tiendas de producto de producción.\nCuál es el precediendo?\nEl CEDI hará pickin.?\nLa tienda que genere su solicitud?\nMe ayudan por favor",
+      "usuario": "Enedina Sup Vta",
+      "fecha": "06/08/25",
+      "hora": "9:24:20 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "Mensaje de consulta sobre procedimientos operativos para surtido de tiendas. No reporta error técnico ni problema, solo solicita información sobre el proceso correcto",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": [
+          "ayudan"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3982.16,
+        "tokens_input": 1921,
+        "tokens_output": 143,
+        "costo_estimado_usd": 0.007908
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje es una solicitud de información sobre el procedimiento de surtido y no reporta un problema técnico específico.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3058.25,
+        "tokens_input": 1520,
+        "tokens_output": 103,
+        "costo_estimado_usd": 0.0002898
+      }
+    }
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.974,
+    "categoria": "Sistema SAP",
+    "prioridad": "media",
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": "CEDI",
+      "palabras_clave": [
+        "apoyo",
+        "sin poder ingresar",
+        "tickets pendientes"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Buen día su apoyo a las tiendas de Progreso, tenemos estos tickets pendientes de Cedi sin poder ingresar",
+      "usuario": "Rubí Canché (Turistore)",
+      "fecha": "03/09/25",
+      "hora": "9:04:44 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.92,
+      "razonamiento": "Mensaje solicita apoyo técnico para problema específico: tickets de CEDI que no se pueden ingresar, afectando operación de tiendas",
+      "categoria": "Sistema SAP",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "CEDI",
+        "palabras_clave": [
+          "apoyo",
+          "sin poder ingresar",
+          "tickets pendientes"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3895.79,
+        "tokens_input": 1895,
+        "tokens_output": 158,
+        "costo_estimado_usd": 0.008055
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje indica que las tiendas de Progreso tienen problemas para ingresar a Cedi, lo que sugiere un problema técnico que requiere atención.",
+      "categoria": "Otro",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "Progreso"
+        },
+        "sistema_afectado": "Cedi",
+        "palabras_clave": [
+          "sin poder ingresar",
+          "tickets pendientes"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3257.1,
+        "tokens_input": 1504,
+        "tokens_output": 124,
+        "costo_estimado_usd": 0.0003
+      }
+    }
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.782,
+    "categoria": "Precios",
+    "prioridad": "media",
+    "metadata": {
+      "ubicacion": {
+        "tienda": "107"
+      },
+      "sistema_afectado": "sistema de precios",
+      "palabras_clave": [
+        "sin precio",
+        "sistema",
+        "apoyo"
+      ]
+    },
+    "consenso": {
+      "tipo": "discrepancia",
+      "modelo_primario": "claude",
+      "requiere_revision": true
+    },
+    "mensaje_original": {
+      "texto": "Hola, seguimos en espera quien apoya a la 107 con los productos de farmacia sin precio en el sistema\n‎[05/09/25, 3:38:45 p.m.] Miriam Buccio supervisora: ‎<adjunto: 00002831-PHOTO-2025-09-05-15-38-45.jpg>",
+      "usuario": "Rubí Canché (Turistore)",
+      "fecha": "05/09/25",
+      "hora": "3:19:36 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.92,
+      "razonamiento": "Mensaje reporta problema técnico específico: productos de farmacia sin precio en el sistema de la tienda 107, solicita apoyo técnico",
+      "categoria": "Precios",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "107"
+        },
+        "sistema_afectado": "sistema de precios",
+        "palabras_clave": [
+          "sin precio",
+          "sistema",
+          "apoyo"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3935.68,
+        "tokens_input": 1953,
+        "tokens_output": 158,
+        "costo_estimado_usd": 0.008229
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje solicita apoyo logístico para un problema de precios en productos de farmacia, pero no indica un error técnico específico en el sistema.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": "107"
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3486.63,
+        "tokens_input": 1557,
+        "tokens_output": 109,
+        "costo_estimado_usd": 0.00029895
+      }
+    }
+  },
+  {
+    "mensaje_original": {
+      "fecha": "28/08/25",
+      "hora": "12:07:51 p.m.",
+      "usuario": "Vicente Cañaveral (Turistore)",
+      "texto": "Me  ayudan pliss",
+      "texto_completo": "Me  ayudan pliss\n‎[28/08/25, 1:47:08 p.m.] Angela Chale SUPERVISORA: ‎<adjunto: 00002385-PHOTO-2025-08-28-13-47-08.jpg>\n‎[28/08/25, 1:47:08 p.m.] Angela Chale SUPERVISORA: ‎<adjunto: 00002386-PHOTO-2025-08-28-13-47-08.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 32: character maps to <undefined>"
+  },
+  {
+    "mensaje_original": {
+      "fecha": "07/08/25",
+      "hora": "2:36:22 p.m.",
+      "usuario": "Vicente Cañaveral (Turistore)",
+      "texto": "Ayudan con esto de las 606 aún no podemos generar la orden de compra de Producción",
+      "texto_completo": "Ayudan con esto de las 606 aún no podemos generar la orden de compra de Producción\n‎[07/08/25, 2:38:43 p.m.] Miguel Aranda Turistore: ‎<adjunto: 00001105-PHOTO-2025-08-07-14-38-43.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 98: character maps to <undefined>"
+  },
+  {
+    "mensaje_original": {
+      "fecha": "06/08/25",
+      "hora": "2:15:55 p.m.",
+      "usuario": "~ EDNA ALICIA CRUZ RAMOS",
+      "texto": "Buenas tardes en 102 no deja hacer pedido de artesanias,y si le dejo hacer de abarrotrs",
+      "texto_completo": "Buenas tardes en 102 no deja hacer pedido de artesanias,y si le dejo hacer de abarrotrs\n‎[06/08/25, 2:22:14 p.m.] Enedina Sup Vta: ‎<adjunto: 00000907-PHOTO-2025-08-06-14-22-14.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 103: character maps to <undefined>"
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.807,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": null,
+      "palabras_clave": []
+    },
+    "consenso": {
+      "tipo": "discrepancia",
+      "modelo_primario": "openai",
+      "requiere_revision": true
+    },
+    "mensaje_original": {
+      "texto": "El apoyo para que llegue notificación Vicky y que las tienes tenga informe de lo que tienen en tránsito !\n‎[18/09/25, 3:18:06 p.m.] Miriam Buccio supervisora: ‎<adjunto: 00003253-PHOTO-2025-09-18-15-18-06.jpg>\n‎[18/09/25, 3:18:07 p.m.] Miriam Buccio supervisora: ‎<adjunto: 00003254-PHOTO-2025-09-18-15-18-07.jpg>",
+      "usuario": "Angela Chale SUPERVISORA",
+      "fecha": "18/09/25",
+      "hora": "3:17:29 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.75,
+      "razonamiento": "Solicitud de apoyo técnico para implementar funcionalidad de notificaciones e informes de inventario en tránsito, con evidencia fotográfica adjunta",
+      "categoria": "Inventario",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "notificaciones",
+        "palabras_clave": [
+          "apoyo",
+          "notificación",
+          "informe",
+          "tránsito"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3707.72,
+        "tokens_input": 2019,
+        "tokens_output": 169,
+        "costo_estimado_usd": 0.008591999999999999
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.95,
+      "razonamiento": "El mensaje solicita apoyo logístico y no reporta un problema técnico específico relacionado con el sistema SAP.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 1488.94,
+        "tokens_input": 1607,
+        "tokens_output": 101,
+        "costo_estimado_usd": 0.00030165
+      }
+    }
+  },
+  {
+    "mensaje_original": {
+      "fecha": "28/08/25",
+      "hora": "11:42:29 a.m.",
+      "usuario": "Nataly Ake Turistore",
+      "texto": "@⁨Alvaro May Turistore⁩ @⁨Jose Santamaria Turistore⁩ nos ayudan con la unidad de medida que no les deja seguir en el POS, la oc ya esta bien .",
+      "texto_completo": "@⁨Alvaro May Turistore⁩ @⁨Jose Santamaria Turistore⁩ nos ayudan con la unidad de medida que no les deja seguir en el POS, la oc ya esta bien ."
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u2068' in position 15: character maps to <undefined>"
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.99,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Gracias Jose",
+      "usuario": "Lupita Carbajal",
+      "fecha": "23/10/25",
+      "hora": "12:03:24 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje de agradecimiento sin contenido técnico ni reporte de problema",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 2816.16,
+        "tokens_input": 1867,
+        "tokens_output": 118,
+        "costo_estimado_usd": 0.007371
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje de agradecimiento/confirmación sin contenido técnico",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 2778.07,
+        "tokens_input": 1485,
+        "tokens_output": 92,
+        "costo_estimado_usd": 0.00027795
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.99,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Hola",
+      "usuario": "Lupita Carbajal",
+      "fecha": "30/07/25",
+      "hora": "6:32:21 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje de saludo sin contenido técnico ni reporte de problema",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 2913.44,
+        "tokens_input": 1866,
+        "tokens_output": 121,
+        "costo_estimado_usd": 0.007413
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje de saludo sin contenido técnico",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 2512.15,
+        "tokens_input": 1484,
+        "tokens_output": 88,
+        "costo_estimado_usd": 0.00027539999999999997
+      }
+    }
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 1.0,
+    "categoria": "Inventario",
+    "prioridad": "alta",
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": "traspasos",
+      "palabras_clave": [
+        "apoyo",
+        "sin poder",
+        "traspasos",
+        "urge"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Por fis el apoyo seguimos sin poder hacer traspasos urge ya que la tienda debe estar vacía el 30 de septiembre hay que traspasar toda la mercancía\n‎[15/09/25, 4:38:44 p.m.] Lluvia Solis Turistore: ‎<adjunto: 00003136-PHOTO-2025-09-15-16-38-44.jpg>",
+      "usuario": "Roxana Ingrid Morlet",
+      "fecha": "15/09/25",
+      "hora": "4:14:40 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.95,
+      "razonamiento": "Mensaje solicita apoyo técnico urgente por imposibilidad de realizar traspasos, con fecha límite crítica para operación",
+      "categoria": "Inventario",
+      "prioridad": "alta",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "traspasos",
+        "palabras_clave": [
+          "apoyo",
+          "sin poder",
+          "traspasos",
+          "urge"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3572.33,
+        "tokens_input": 1967,
+        "tokens_output": 158,
+        "costo_estimado_usd": 0.008271
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.95,
+      "razonamiento": "El mensaje indica que hay un problema para realizar traspasos y menciona que es urgente, lo que implica una necesidad inmediata de apoyo técnico.",
+      "categoria": "Inventario",
+      "prioridad": "alta",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "traspasos",
+        "palabras_clave": [
+          "apoyo",
+          "sin poder hacer traspasos",
+          "urge",
+          "traspasar toda la mercancía"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 5325.35,
+        "tokens_input": 1572,
+        "tokens_output": 139,
+        "costo_estimado_usd": 0.00031919999999999995
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.722,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": null,
+      "palabras_clave": []
+    },
+    "consenso": {
+      "tipo": "discrepancia",
+      "modelo_primario": "openai",
+      "requiere_revision": true
+    },
+    "mensaje_original": {
+      "texto": "Buenas tardes SISTEMAS de los tickets que están subiendo las tiendas, nosotros los supervisores no estamos enterados, ya que no hay la opción como en los tickets de Mantenimiento    de copiar al supervisor.",
+      "usuario": "~ EDNA ALICIA CRUZ RAMOS",
+      "fecha": "07/08/25",
+      "hora": "5:10:34 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "Reporta problema en el sistema de tickets donde falta funcionalidad de notificación a supervisores, comparando con sistema anterior",
+      "categoria": "Sistema SAP",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "sistema de tickets",
+        "palabras_clave": [
+          "no hay la opción",
+          "no estamos enterados"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 4078.86,
+        "tokens_input": 1917,
+        "tokens_output": 154,
+        "costo_estimado_usd": 0.008061
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje expresa una preocupación sobre la falta de comunicación respecto a los tickets, pero no reporta un problema técnico específico con el sistema o funcionalidad.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3665.13,
+        "tokens_input": 1526,
+        "tokens_output": 111,
+        "costo_estimado_usd": 0.00029549999999999997
+      }
+    }
+  },
+  {
+    "mensaje_original": {
+      "fecha": "21/08/25",
+      "hora": "11:48:03 a.m.",
+      "usuario": "Iliana Rios Supervisora ⭐",
+      "texto": "Buen día ya quedó ingresada la factura de la coca de samba … muchas gracias por el",
+      "texto_completo": "Buen día ya quedó ingresada la factura de la coca de samba … muchas gracias por el\nApoyo\n‎[21/08/25, 11:59:20 a.m.] Carmen Cisneros Turistore: ‎<adjunto: 00002038-PHOTO-2025-08-21-11-59-20.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 105: character maps to <undefined>"
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.974,
+    "categoria": "Precios",
+    "prioridad": "media",
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": "contratos",
+      "palabras_clave": [
+        "error",
+        "código",
+        "artículos duplicados",
+        "precios diferentes"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Hay aún contratos con error de código o artículos duplicados con precios diferentes",
+      "usuario": "Hector Nakasone Turistore",
+      "fecha": "09/08/25",
+      "hora": "7:25:56 a.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.92,
+      "razonamiento": "Mensaje reporta problemas específicos con contratos que tienen errores de código y artículos duplicados con precios diferentes, lo cual representa una incidencia técnica que requiere corrección",
+      "categoria": "Precios",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "contratos",
+        "palabras_clave": [
+          "error",
+          "código",
+          "artículos duplicados",
+          "precios diferentes"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3982.08,
+        "tokens_input": 1883,
+        "tokens_output": 171,
+        "costo_estimado_usd": 0.008213999999999999
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje menciona 'error de código' y 'artículos duplicados con precios diferentes', lo que indica un problema técnico relacionado con la gestión de contratos y precios.",
+      "categoria": "Precios",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "contratos",
+        "palabras_clave": [
+          "error",
+          "artículos duplicados",
+          "precios diferentes"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4774.91,
+        "tokens_input": 1497,
+        "tokens_output": 133,
+        "costo_estimado_usd": 0.00030435
+      }
+    }
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.974,
+    "categoria": "Ordenes de Compra",
+    "prioridad": "media",
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": "SAP",
+      "palabras_clave": [
+        "no les arroja",
+        "información",
+        "ayuda",
+        "nuevo sistema"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Nos siguen llegando pedidos de proveedores sin información de que Oc sea, mencionan proveedores que no les arroja esa información, su ayuda equipo TI con el nuevo sistema",
+      "usuario": "Lluvia Solis Turistore",
+      "fecha": "12/09/25",
+      "hora": "12:24:08 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.92,
+      "razonamiento": "Mensaje reporta problema técnico donde el sistema no muestra información de OCs a proveedores, solicita ayuda específica del equipo TI",
+      "categoria": "Ordenes de Compra",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "SAP",
+        "palabras_clave": [
+          "no les arroja",
+          "información",
+          "ayuda",
+          "nuevo sistema"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3416.64,
+        "tokens_input": 1910,
+        "tokens_output": 165,
+        "costo_estimado_usd": 0.008205
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje indica un problema con la falta de información sobre órdenes de compra (OC) relacionadas con pedidos de proveedores, lo que sugiere un fallo en el sistema que afecta la operativa.",
+      "categoria": "Ordenes de Compra",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "SAP",
+        "palabras_clave": [
+          "sin información",
+          "no les arroja",
+          "ayuda",
+          "nuevo sistema"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4664.76,
+        "tokens_input": 1515,
+        "tokens_output": 143,
+        "costo_estimado_usd": 0.00031305
+      }
+    }
+  },
+  {
+    "mensaje_original": {
+      "fecha": "04/11/25",
+      "hora": "9:38:46 a.m.",
+      "usuario": "Angela Chale SUPERVISORA",
+      "texto": "Buen día @⁨Rubí Canché (Turistore)⁩  nos apoyas para ver con Lupita este tema !!",
+      "texto_completo": "Buen día @⁨Rubí Canché (Turistore)⁩  nos apoyas para ver con Lupita este tema !!"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u2068' in position 24: character maps to <undefined>"
+  },
+  {
+    "mensaje_original": {
+      "fecha": "06/08/25",
+      "hora": "5:32:15 p.m.",
+      "usuario": "Angela Chale SUPERVISORA",
+      "texto": "Sin repuesta ocupan el producto !!",
+      "texto_completo": "Sin repuesta ocupan el producto !!\n‎[06/08/25, 5:32:29 p.m.] Angela Chale SUPERVISORA: ‎<adjunto: 00000978-PHOTO-2025-08-06-17-32-29.jpg>\n‎[06/08/25, 5:34:59 p.m.] Enedina Sup Vta: ‎<adjunto: 00000979-PHOTO-2025-08-06-17-34-59.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 50: character maps to <undefined>"
+  },
+  {
+    "mensaje_original": {
+      "fecha": "25/08/25",
+      "hora": "12:39:14 p.m.",
+      "usuario": "Nataly Ake Turistore",
+      "texto": "este ya quedo",
+      "texto_completo": "este ya quedo\n‎[25/08/25, 12:51:54 p.m.] Enedina Sup Vta: ‎<adjunto: 00002199-PHOTO-2025-08-25-12-51-54.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 29: character maps to <undefined>"
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 0.99,
+    "categoria": "Sistema SAP",
+    "prioridad": "media",
+    "metadata": {
+      "ubicacion": {
+        "tienda": "los cabos"
+      },
+      "sistema_afectado": "sincronización promociones",
+      "palabras_clave": [
+        "ayudas",
+        "sincronizacion",
+        "sigue sin pasar"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Buena tarde, me ayudas con la sincronizacion de la promo PDV7875 Por favor , sigue sin pasar\nen tienda de los cabos",
+      "usuario": "~ Ale Arenas",
+      "fecha": "08/10/25",
+      "hora": "5:39:14 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.95,
+      "razonamiento": "Mensaje reporta problema técnico específico con sincronización de promoción que no está funcionando en tienda específica",
+      "categoria": "Sistema SAP",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "los cabos"
+        },
+        "sistema_afectado": "sincronización promociones",
+        "palabras_clave": [
+          "ayudas",
+          "sincronizacion",
+          "sigue sin pasar"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 4036.1,
+        "tokens_input": 1903,
+        "tokens_output": 162,
+        "costo_estimado_usd": 0.008139
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje indica que hay un problema con la sincronización de una promoción en el punto de venta, lo que sugiere que no está funcionando correctamente.",
+      "categoria": "POS",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "Los Cabos"
+        },
+        "sistema_afectado": "POS",
+        "palabras_clave": [
+          "sincronizacion",
+          "promo",
+          "sigue sin pasar"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 4299.05,
+        "tokens_input": 1513,
+        "tokens_output": 131,
+        "costo_estimado_usd": 0.00030555
+      }
+    }
+  },
+  {
+    "mensaje_original": {
+      "fecha": "12/09/25",
+      "hora": "12:10:48 p.m.",
+      "usuario": "Angela Chale SUPERVISORA",
+      "texto": "Así es  se escaneaba con ese código y pasaba correctamente y hoy  no se puede escanear",
+      "texto_completo": "Así es  se escaneaba con ese código y pasaba correctamente y hoy  no se puede escanear\n‎[12/09/25, 12:10:55 p.m.] Angela Chale SUPERVISORA: ‎<adjunto: 00003042-PHOTO-2025-09-12-12-10-55.jpg>"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\u200e' in position 102: character maps to <undefined>"
+  },
+  {
+    "mensaje_original": {
+      "fecha": "11/08/25",
+      "hora": "9:23:28 a.m.",
+      "usuario": "Angela Chale SUPERVISORA",
+      "texto": "Nos apoyan para saber estatus de estos pedidos por favor 🙏",
+      "texto_completo": "Nos apoyan para saber estatus de estos pedidos por favor 🙏"
+    },
+    "es_incidencia": null,
+    "confianza": 0.0,
+    "error": "'charmap' codec can't encode character '\\U0001f64f' in position 71: character maps to <undefined>"
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.722,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {
+      "ubicacion": {
+        "tienda": null
+      },
+      "sistema_afectado": null,
+      "palabras_clave": []
+    },
+    "consenso": {
+      "tipo": "discrepancia",
+      "modelo_primario": "openai",
+      "requiere_revision": true
+    },
+    "mensaje_original": {
+      "texto": "desconozco por que lo visualizan de esa manera, Ti nos pueden ayudar con esta duda por favor , gracias\n‎[03/10/25, 7:37:27 a.m.] Angela Chale SUPERVISORA: ‎<adjunto: 00003745-PHOTO-2025-10-03-07-37-27.jpg>",
+      "usuario": "~ Ale Arenas",
+      "fecha": "02/10/25",
+      "hora": "4:04:44 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.85,
+      "razonamiento": "Mensaje solicita ayuda de TI por problema de visualización desconocido, incluye evidencia fotográfica del problema",
+      "categoria": "Sistema SAP",
+      "prioridad": "media",
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": "visualización",
+        "palabras_clave": [
+          "desconozco",
+          "visualizan",
+          "ayudar",
+          "duda"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3976.87,
+        "tokens_input": 1953,
+        "tokens_output": 159,
+        "costo_estimado_usd": 0.008244000000000001
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje es una solicitud de ayuda sobre una duda, pero no reporta un problema técnico específico ni un error en el sistema.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3959.14,
+        "tokens_input": 1561,
+        "tokens_output": 107,
+        "costo_estimado_usd": 0.00029835
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.99,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "si un minuto",
+      "usuario": "Sistemas",
+      "fecha": "19/10/25",
+      "hora": "6:14:36 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje de coordinación temporal sin contenido técnico, típica respuesta para indicar que necesita un momento",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3307.64,
+        "tokens_input": 1867,
+        "tokens_output": 130,
+        "costo_estimado_usd": 0.007551
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.99,
+      "razonamiento": "Mensaje no contiene información técnica ni indica un problema, parece ser una solicitud de espera o tiempo.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 2869.56,
+        "tokens_input": 1486,
+        "tokens_output": 100,
+        "costo_estimado_usd": 0.0002829
+      }
+    }
+  },
+  {
+    "es_incidencia": true,
+    "confianza": 1.0,
+    "categoria": "POS",
+    "prioridad": "alta",
+    "metadata": {
+      "ubicacion": {
+        "tienda": "907"
+      },
+      "sistema_afectado": "POS",
+      "palabras_clave": [
+        "no deja",
+        "cobrar",
+        "marca error"
+      ]
+    },
+    "consenso": {
+      "tipo": "ambos_si",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Tienda 907 no deja cobrar marca error",
+      "usuario": "Lluvia Solis Turistore",
+      "fecha": "02/08/25",
+      "hora": "3:38:54 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": true,
+      "confianza": 0.98,
+      "razonamiento": "Mensaje reporta error técnico en POS que impide realizar cobros en tienda específica",
+      "categoria": "POS",
+      "prioridad": "alta",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "907"
+        },
+        "sistema_afectado": "POS",
+        "palabras_clave": [
+          "no deja",
+          "cobrar",
+          "marca error"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 3016.69,
+        "tokens_input": 1876,
+        "tokens_output": 146,
+        "costo_estimado_usd": 0.007818
+      }
+    },
+    "openai_result": {
+      "es_incidencia": true,
+      "confianza": 0.98,
+      "razonamiento": "Mensaje reporta error técnico en POS que impide realizar cobros en tienda específica",
+      "categoria": "POS",
+      "prioridad": "alta",
+      "metadata": {
+        "ubicacion": {
+          "tienda": "907"
+        },
+        "sistema_afectado": "POS",
+        "palabras_clave": [
+          "no deja",
+          "cobrar",
+          "marca error"
+        ]
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 3659.71,
+        "tokens_input": 1492,
+        "tokens_output": 114,
+        "costo_estimado_usd": 0.0002922
+      }
+    }
+  },
+  {
+    "es_incidencia": false,
+    "confianza": 0.85,
+    "categoria": null,
+    "prioridad": null,
+    "metadata": {},
+    "consenso": {
+      "tipo": "ambos_no",
+      "requiere_revision": false
+    },
+    "mensaje_original": {
+      "texto": "Nos ayudan plis",
+      "usuario": "Vicente Cañaveral (Turistore)",
+      "fecha": "05/08/25",
+      "hora": "12:48:16 p.m."
+    },
+    "claude_result": {
+      "es_incidencia": false,
+      "confianza": 0.75,
+      "razonamiento": "Solicitud de ayuda muy general sin especificar problema técnico concreto. Falta contexto sobre qué tipo de ayuda necesitan",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": [
+          "ayudan"
+        ]
+      },
+      "_metadata": {
+        "modelo": "claude-sonnet-4-20250514",
+        "tiempo_ms": 4031.9,
+        "tokens_input": 1870,
+        "tokens_output": 143,
+        "costo_estimado_usd": 0.007755
+      }
+    },
+    "openai_result": {
+      "es_incidencia": false,
+      "confianza": 0.85,
+      "razonamiento": "El mensaje solicita ayuda pero no especifica un problema técnico claro, por lo que no se considera una incidencia.",
+      "categoria": null,
+      "prioridad": null,
+      "metadata": {
+        "ubicacion": {
+          "tienda": null
+        },
+        "sistema_afectado": null,
+        "palabras_clave": []
+      },
+      "_metadata": {
+        "modelo": "gpt-4o-mini",
+        "tiempo_ms": 2616.35,
+        "tokens_input": 1486,
+        "tokens_output": 103,
+        "costo_estimado_usd": 0.0002847
+      }
+    }
+  }
+]

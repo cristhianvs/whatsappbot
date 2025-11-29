@@ -27,13 +27,16 @@ class ZohoClient:
     async def initialize(self):
         """Initialize Zoho client with tokens and org ID"""
         try:
-            # Get initial tokens
-            await self._get_tokens_from_code()
+            # Try to load existing refresh token first
+            if not await self._load_saved_tokens():
+                # If no saved tokens, get new ones from authorization code
+                await self._get_tokens_from_code()
+                await self._save_tokens()
             
             # Get organization ID
             await self._get_org_id()
             
-            logger.info("Zoho client initialized", org_id=self.org_id)
+            logger.info("Zoho client initialized", org_id=self.org_id, has_refresh_token=bool(self.refresh_token))
             
         except Exception as e:
             logger.error("Failed to initialize Zoho client", error=str(e))
@@ -59,11 +62,15 @@ class ZohoClient:
             
             token_data = response.json()
             
+            if 'error' in token_data:
+                raise ValueError(f"OAuth error: {token_data.get('error')} - {token_data.get('error_description', 'No description')}")
+            
             if 'access_token' not in token_data:
-                raise KeyError("access_token not found in response")
+                logger.error("Token response missing access_token", response_data=token_data)
+                raise KeyError(f"access_token not found in response. Got: {list(token_data.keys())}")
             
             self.access_token = token_data['access_token']
-            self.refresh_token = token_data['refresh_token']
+            self.refresh_token = token_data.get('refresh_token')
             
             # Set token expiration (typically 1 hour)
             expires_in = token_data.get('expires_in', 3600)
@@ -155,6 +162,48 @@ class ZohoClient:
             logger.error("Failed to list departments", error=str(e))
             raise
     
+    async def search_contact_by_email(self, email: str) -> Optional[str]:
+        """Search for existing contact by email"""
+        try:
+            # Try different search approaches
+            search_methods = [
+                f'/contacts/search?email={email}',
+                f'/contacts?email={email}',
+                f'/contacts?searchStr={email}',
+                '/contacts'  # Get all contacts and filter client-side
+            ]
+            
+            for endpoint in search_methods:
+                try:
+                    logger.info(f"Trying search endpoint: {endpoint}")
+                    response = await self._make_request('GET', endpoint)
+                    contacts = response.get('data', [])
+                    
+                    # Filter contacts by email if we got a list
+                    for contact in contacts:
+                        if contact.get('email', '').lower() == email.lower():
+                            contact_id = contact['id']
+                            logger.info("Found existing contact", contact_id=contact_id, email=email, method=endpoint)
+                            return contact_id
+                    
+                    # If this was a specific search (not getting all contacts), continue to next method
+                    if endpoint != '/contacts':
+                        continue
+                    else:
+                        # We searched all contacts and didn't find it
+                        break
+                        
+                except Exception as search_error:
+                    logger.warning(f"Search method failed: {endpoint}", error=str(search_error))
+                    continue
+            
+            logger.info("Contact not found", email=email)
+            return None
+            
+        except Exception as e:
+            logger.error("Failed to search contact", error=str(e), email=email)
+            return None
+
     async def create_contact(self, email: str, name: str = 'Cliente Prueba') -> str:
         """Create a contact in Zoho Desk"""
         try:
@@ -173,30 +222,47 @@ class ZohoClient:
         except Exception as e:
             logger.error("Failed to create contact", error=str(e), email=email)
             raise
+
+    async def get_or_create_contact(self, email: str, name: str = 'Cliente Prueba') -> str:
+        """Get existing contact or create new one"""
+        try:
+            # First, try to find existing contact
+            existing_id = await self.search_contact_by_email(email)
+            if existing_id:
+                return existing_id
+            
+            # If not found, create new contact
+            return await self.create_contact(email, name)
+            
+        except Exception as e:
+            logger.error("Failed to get or create contact", error=str(e), email=email)
+            raise
     
     async def create_ticket(self, ticket_request: TicketRequest) -> str:
         """Create a ticket in Zoho Desk"""
         try:
+            # Set priority based on the string value
+            priority_lower = ticket_request.priority.lower()
+            if priority_lower in ['urgent', 'high']:
+                priority = 'High'
+            elif priority_lower in ['normal', 'medium']:
+                priority = 'Medium'
+            else:
+                priority = 'Low'
+            
             payload = {
                 'subject': ticket_request.subject,
                 'description': ticket_request.description,
                 'departmentId': ticket_request.department_id,
                 'contactId': ticket_request.contact_id,
-                'classification': ticket_request.classification
+                'priority': priority
             }
-            
-            # Set priority based on our enum
-            if ticket_request.priority.value == 'urgent':
-                payload['priority'] = 'High'
-            elif ticket_request.priority.value == 'normal':
-                payload['priority'] = 'Medium'
-            else:
-                payload['priority'] = 'Low'
             
             # Add optional fields if present
             if ticket_request.location:
                 payload['cf_location'] = ticket_request.location  # Custom field
             
+            logger.info("Sending ticket payload to Zoho", payload=payload)
             data = await self._make_request('POST', '/tickets', json=payload)
             ticket_id = data.get('id') or data.get('ticketId')
             
@@ -204,13 +270,13 @@ class ZohoClient:
                 "Ticket created in Zoho",
                 ticket_id=ticket_id,
                 subject=ticket_request.subject,
-                priority=ticket_request.priority.value
+                priority=ticket_request.priority
             )
             
             return str(ticket_id)
             
         except Exception as e:
-            logger.error("Failed to create ticket", error=str(e))
+            logger.error("Failed to create ticket", error=str(e), payload=payload)
             raise
     
     async def get_ticket_status(self, ticket_id: str) -> str:
@@ -242,8 +308,58 @@ class ZohoClient:
             'response_type': 'code',
             'client_id': self.client_id,
             'redirect_uri': self.redirect_uri,
-            'scope': 'Desk.tickets.CREATE,Desk.contacts.CREATE,Desk.basic.READ'
+            'scope': 'Desk.tickets.ALL,Desk.contacts.ALL,Desk.basic.ALL',
+            'access_type': 'offline',  # This ensures we get a refresh token
+            'prompt': 'consent'  # Force consent screen to ensure refresh token
         }
         
-        url = f"{base_url}?{'&'.join([f'{k}={v}' for k, v in params.items()])}"
+        query_string = '&'.join([f'{k}={v}' for k, v in params.items()])
+        url = f"{base_url}?{query_string}"
         return url
+    
+    async def _save_tokens(self):
+        """Save refresh token to file for persistence"""
+        try:
+            import json
+            token_data = {
+                'refresh_token': self.refresh_token,
+                'org_id': self.org_id,
+                'created_at': datetime.now().isoformat()
+            }
+            
+            # Save to a secure location (in production, encrypt this!)
+            token_file = os.path.join(os.path.dirname(__file__), '..', '.zoho_tokens.json')
+            with open(token_file, 'w') as f:
+                json.dump(token_data, f, indent=2)
+            
+            logger.info("Tokens saved successfully")
+            
+        except Exception as e:
+            logger.warning("Failed to save tokens", error=str(e))
+    
+    async def _load_saved_tokens(self) -> bool:
+        """Load saved refresh token from file"""
+        try:
+            import json
+            token_file = os.path.join(os.path.dirname(__file__), '..', '.zoho_tokens.json')
+            
+            if not os.path.exists(token_file):
+                return False
+            
+            with open(token_file, 'r') as f:
+                token_data = json.load(f)
+            
+            self.refresh_token = token_data.get('refresh_token')
+            self.org_id = token_data.get('org_id')
+            
+            if self.refresh_token:
+                # Refresh the access token
+                await self._refresh_access_token()
+                logger.info("Loaded saved tokens successfully")
+                return True
+                
+            return False
+            
+        except Exception as e:
+            logger.warning("Failed to load saved tokens", error=str(e))
+            return False

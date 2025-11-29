@@ -3,7 +3,20 @@
     "allow": [
       "Bash(mkdir:*)",
       "Bash(git add:*)",
-      "Bash(uv run pytest:*)"
+      "Bash(uv run pytest:*)",
+      "Bash(grep:*)",
+      "Bash(docker-compose restart:*)",
+      "Bash(docker-compose:*)",
+      "Bash(curl:*)",
+      "Bash(uv run:*)",
+      "Bash(redis-cli:*)",
+      "Bash(taskkill:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(rm:*)",
+      "Bash(npm start)",
+      "Bash(docker start:*)",
+      "Bash(docker exec:*)"
     ],
     "deny": []
   }

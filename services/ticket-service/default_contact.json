@@ -1,0 +1,11 @@
+{
+  "default_contact": {
+    "email": "cvelazco@turistore.com",
+    "contact_id": "813934000001132001",
+    "name": "Cristhian Velazco"
+  },
+  "usage": {
+    "description": "Use this contact_id for all tickets created by the system",
+    "example": "contact_id: '813934000001132001'"
+  }
+}

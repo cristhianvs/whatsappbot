@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Redis compartido para todos los servicios
+  redis:
+    image: redis:7-alpine
+    container_name: shared-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+  # WhatsApp Service
+  whatsapp-service:
+    build: ../../
+    container_name: whatsapp-service
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - REDIS_URL=redis://redis:6379
+      - SERVICE_NAME=whatsapp-service
+      - LOG_LEVEL=info
+      - WHATSAPP_SESSION_NAME=my-project-session
+    depends_on:
+      - redis
+    volumes:
+      - whatsapp_sessions:/app/sessions
+      - whatsapp_logs:/app/logs
+    restart: unless-stopped
+
+  # Ejemplo de aplicación principal que usa el WhatsApp Service
+  main-app:
+    build: ./main-app
+    container_name: main-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - WHATSAPP_SERVICE_URL=http://whatsapp-service:3001
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - whatsapp-service
+      - redis
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  whatsapp_sessions:
+  whatsapp_logs:

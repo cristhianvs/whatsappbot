@@ -40,18 +40,25 @@ ticket_queue = TicketQueue(redis_client)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
-    await redis_client.connect()
+    try:
+        await redis_client.connect()
+        logger.info("Redis connected successfully")
+    except Exception as e:
+        logger.warning("Redis connection failed, continuing without Redis", error=str(e))
     
     try:
         await zoho_client.initialize()
+        logger.info("Zoho client initialized successfully")
     except Exception as e:
         logger.warning("Zoho client initialization failed, will retry later", error=str(e))
     
-    # Start classification result subscriber
-    subscriber_task = await start_classification_subscriber()
+    # Start classification result subscriber (only if Redis is available)
+    subscriber_task = None
+    queue_processor_task = None
     
-    # Start queue processor
-    queue_processor_task = await start_queue_processor()
+    if redis_client.redis:
+        subscriber_task = await start_classification_subscriber()
+        queue_processor_task = await start_queue_processor()
     
     logger.info("Ticket service started")
     yield
@@ -61,7 +68,8 @@ async def lifespan(app: FastAPI):
         subscriber_task.cancel()
     if queue_processor_task:
         queue_processor_task.cancel()
-    await redis_client.disconnect()
+    if redis_client.redis:
+        await redis_client.disconnect()
     logger.info("Ticket service shutdown")
 
 app = FastAPI(
@@ -136,7 +144,8 @@ async def build_ticket_from_classification(classification: dict, message_id: str
         else:
             priority = 'low'
             
-        # Get or create contact
+        # For now, use a placeholder until we implement email collection
+        # In Phase 2, this should be replaced with actual customer email from conversation
         contact_email = f"whatsapp+{group_id.replace('@g.us', '')}@support.com"
         contact_id = await get_or_create_contact(contact_email, "Cliente WhatsApp")
         
@@ -173,9 +182,8 @@ Incidente reportado desde WhatsApp:
 async def get_or_create_contact(email: str, name: str) -> str:
     """Get existing contact or create new one"""
     try:
-        # For now, just create a new contact each time
-        # In production, you'd want to check if contact exists first
-        contact_id = await zoho_client.create_contact(email, name)
+        # Use the improved get_or_create_contact method
+        contact_id = await zoho_client.get_or_create_contact(email, name)
         return contact_id
     except Exception as e:
         logger.error("Failed to get/create contact", error=str(e), email=email)
@@ -241,7 +249,10 @@ async def queue_processor_background():
 
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
-    queue_length = await ticket_queue.get_queue_length()
+    try:
+        queue_length = await ticket_queue.get_queue_length() if redis_client.redis else 0
+    except Exception:
+        queue_length = 0
     
     return HealthResponse(
         status="healthy",
@@ -266,7 +277,7 @@ async def create_ticket(request: TicketRequest):
                 "ticket_id": ticket_id,
                 "ticket_number": f"#{ticket_id}",
                 "subject": request.subject,
-                "priority": request.priority.value,
+                "priority": request.priority,
                 "contact_id": request.contact_id,
                 "timestamp": datetime.now().isoformat()
             })
@@ -280,7 +291,11 @@ async def create_ticket(request: TicketRequest):
             )
             
         except Exception as zoho_error:
-            logger.warning("Zoho unavailable, queuing ticket", error=str(zoho_error))
+            logger.error("Zoho ticket creation failed", 
+                        error=str(zoho_error),
+                        error_type=type(zoho_error).__name__,
+                        subject=request.subject,
+                        priority=request.priority)
             
             # Queue the ticket for later processing
             queue_id = await ticket_queue.add_ticket(request)
@@ -329,6 +344,19 @@ async def list_departments():
         logger.error("Failed to get departments", error=str(e))
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/contacts/search")
+async def search_contact(email: str):
+    """Search for contact by email"""
+    try:
+        contact_id = await zoho_client.search_contact_by_email(email)
+        if contact_id:
+            return {"contact_id": contact_id, "email": email, "found": True}
+        else:
+            return {"contact_id": None, "email": email, "found": False}
+    except Exception as e:
+        logger.error("Failed to search contact", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.post("/contacts")
 async def create_contact(email: str, name: str = "Cliente"):
     try:
@@ -347,6 +375,115 @@ async def process_queue():
     except Exception as e:
         logger.error("Failed to process queue", error=str(e))
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/auth/url")
+async def get_authorization_url():
+    """Get Zoho authorization URL for obtaining new auth code"""
+    try:
+        url = zoho_client.generate_authorization_url()
+        
+        instructions = {
+            "authorization_url": url,
+            "instructions": [
+                "1. Visit the authorization URL",
+                "2. Login with your Zoho account",
+                "3. Approve the permissions",
+                "4. Copy the 'code' parameter from the redirect URL",
+                "5. Update ZOHO_AUTHORIZATION_CODE in your .env file"
+            ],
+            "alternative": "Run 'python setup_zoho_auth.py' for automated setup"
+        }
+        
+        return instructions
+    except Exception as e:
+        logger.error("Failed to generate auth URL", error=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/tickets/customer")
+async def create_customer_ticket(
+    customer_email: str,
+    customer_name: str,
+    subject: str,
+    description: str,
+    priority: str = "Medium"
+):
+    """Create ticket with proper customer contact workflow"""
+    try:
+        logger.info("Creating customer ticket", 
+                   customer_email=customer_email, 
+                   subject=subject)
+        
+        # Step 1: Get or create customer contact
+        contact_id = await zoho_client.get_or_create_contact(customer_email, customer_name)
+        logger.info("Customer contact resolved", 
+                   contact_id=contact_id, 
+                   email=customer_email)
+        
+        # Step 2: Create ticket under customer's contact
+        ticket_request = TicketRequest(
+            subject=subject,
+            description=description,
+            priority=priority,
+            contact_id=contact_id,
+            department_id="813934000000006907",  # Soporte TI
+            classification="Problem"
+        )
+        
+        ticket_id = await zoho_client.create_ticket(ticket_request)
+        
+        # Step 3: Publish success event
+        await redis_client.publish_message("tickets:created", {
+            "ticket_id": ticket_id,
+            "customer_email": customer_email,
+            "customer_name": customer_name,
+            "subject": subject,
+            "priority": priority,
+            "timestamp": datetime.now().isoformat()
+        })
+        
+        return {
+            "success": True,
+            "ticket_id": ticket_id,
+            "customer_email": customer_email,
+            "contact_id": contact_id,
+            "message": f"Ticket created for customer {customer_name}"
+        }
+        
+    except Exception as e:
+        logger.error("Failed to create customer ticket", 
+                    error=str(e), 
+                    customer_email=customer_email)
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/debug/ticket")
+async def debug_ticket_creation(request: TicketRequest):
+    """Debug endpoint that shows the exact Zoho error"""
+    try:
+        logger.info("Debug ticket creation attempt", subject=request.subject)
+        
+        # Try to create ticket and capture the exact error
+        ticket_id = await zoho_client.create_ticket(request)
+        
+        return {
+            "success": True,
+            "ticket_id": ticket_id,
+            "message": "Ticket created successfully"
+        }
+        
+    except Exception as e:
+        # Return the exact error details
+        return {
+            "success": False,
+            "error": str(e),
+            "error_type": type(e).__name__,
+            "error_details": {
+                "subject": request.subject,
+                "priority": request.priority,
+                "contact_id": request.contact_id,
+                "department_id": request.department_id,
+                "classification": request.classification
+            }
+        }
 
 @app.get("/metrics")
 async def get_metrics():

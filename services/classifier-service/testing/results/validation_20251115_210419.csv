@@ -1,0 +1,67 @@
+Num,Usuario,Mensaje,Claude_Incidencia,Claude_Confianza,OpenAI_Incidencia,OpenAI_Confianza,Consenso_Incidencia,Consenso_Confianza,Tipo_Consenso,Categoria,Prioridad,Validacion_Manual,Notas
+1,~ EDNA ALICIA CRUZ RAMOS,"Porfavor quitar el tema de los lotes,caso de pasar varias playeras al querer sacar el ticket resulto que se selecciono una si existencia en el lote y no deja quitar la linea y cambiar lote con existen",Si,0.95,Si,0.85,Si,0.99,ambos_si,POS,alta,,
+2,Sistemas,@⁨José Ramón López Turistore⁩,No,0,No,0,No,0,,,,,
+3,~ Somnium.9920,"Holaaaaaa, holaaa ya se esta trabajando para mandar el precio de venta.👀",No,0,No,0,No,0,,,,,
+4,Patricia  Montejo,"Buen día, igual tengo reportes de provedor que todo sale en blanco
+No ven las ordenes",Si,0.92,Si,0.85,Si,0.974,ambos_si,Proveedores,media,,
+5,Roxana Ingrid Morlet,Nadie responde su apoyo por favor,Si,0.75,No,0.85,No,0.722,discrepancia,,,,
+6,Manuel Villalva,"Hola, buenos día!!!
+Nos pueden ayudar con el Ticket 16046, aun no pueden dar entrada en el cedi de bahía principe, ya se realizaron la indicaciones que nos dieron pero el tema persiste
+Quedo al pendie",Si,0.95,Si,0.85,Si,0.99,ambos_si,Inventario,media,,
+7,Sistemas,ya lo estamos revisando al parecer es un tema de lote,No,0.85,No,0.85,No,0.85,ambos_no,,,,
+8,Victoria Bonilla,"Buen día
+Acabo de estar en Playaland y esta mercancía ya tiene días q no se puede resurtir es por un solo artículo que no entra toda la mercancía por favor nos pueden apoyar? 
+‎[28/10/25, 12:04:00 p.m",Si,0.92,Si,0.85,Si,0.974,ambos_si,Inventario,media,,
+9,Roxana Ingrid Morlet,Buen día por favor insisto con el apoyo ya lo tengo nada para vender en refri el producto está detenido en tienda,Si,0.92,Si,0.85,Si,0.974,ambos_si,Inventario,alta,,
+10,Diana Reyes Supervisora,"Team, les pedimos de favor un manual básico con los cambios realizados en el sistema; un Manuel breve de consulta para tiendas, ya que hay temas que no se revisaron en las reuniones previas a la migra",No,0.95,No,0.95,No,0.95,ambos_no,,,,
+11,Enedina Sup Vta,Gracias,No,0.99,No,0.99,No,0.99,ambos_no,,,,
+12,Enedina Sup Vta,Me pueden ayudar a resolver este ID 16011,No,0.85,No,0.85,No,0.85,ambos_no,,,,
+13,Rubí Canché (Turistore),Su apoyo por favor a la 301 está pendiente ingresar la factura de NADRO,Si,0.85,No,0.85,No,0.722,discrepancia,,,,
+14,Miriam Supervisora,Serán mixtas las unidades? Igualmente en tienda 111,No,0,No,0,No,0,,,,,
+15,Rubí Canché (Turistore),"Compras de su apoyo por favor a las tiendas 401 y 402
+Tienen pendiente el ingreso de las facturas de Walmart y Pepsi ",Si,0.85,No,0.95,No,0.807,discrepancia,,,,
+16,Antonio Robles Turistore,Queda una semana para terminar el mes y veo que siguen varios temas sin resolverse de fondo en gastos los estamos haciendo manual por fuera del sistema. Cómo vamos a estar con el cierre? @⁨Sistemas⁩ @,Si,0.85,No,0.85,No,0.722,discrepancia,,,,
+17,Sistemas,"Esto es un error del pack, que estamos averiguando, si es por una intermitencia del S.A.T.",No,0.85,Si,0.85,Si,0.722,discrepancia,Otro,media,,
+18,Jose Santamaria Turistore,"Buenos dias, nos apoyan con los codigos de articulos para poder generar las revisiones, al igual de la sucursal 912",Si,0.85,No,0.95,No,0.807,discrepancia,,,,
+19,Roxana Ingrid Morlet,Por favor el apoyo,No,0,No,0,No,0,,,,,
+20,Nataly Ake Turistore,"Me refiero a la alerta que le da a la tienda, cuando esta validando el precio. Porque pues si solo le marca alguno (s) es el precio de ese producto es el que mandamos una y otra vez y como le sigue ma",Si,0.85,Si,0.85,Si,0.935,ambos_si,Ordenes de Compra,media,,
+21,Alvaro May Turistore,Este,No,0.99,No,0.99,No,0.99,ambos_no,,,,
+22,Sistemas,"Estoy, ya quedó todo, con excepción de una línea que estamos revisando",No,0.85,No,0.95,No,0.95,ambos_no,,,,
+23,Enedina Sup Vta,de su ayuda para sucursal 518... seguimiento por favor..,No,0,No,0,No,0,,,,,
+24,Aldo Castorella,Claro.,No,0.99,No,0.99,No,0.99,ambos_no,,,,
+25,Rubí Canché (Turistore),Su apoyo a la 410 no les permite cerrar el traspaso de Citees,No,0,No,0,No,0,,,,,
+26,Enedina Sup Vta,"Buen día!
+ Para surtir tiendas de producto de producción.
+Cuál es el precediendo?
+El CEDI hará pickin.?
+La tienda que genere su solicitud?
+Me ayudan por favor",No,0.85,No,0.85,No,0.85,ambos_no,,,,
+27,Rubí Canché (Turistore),"Buen día su apoyo a las tiendas de Progreso, tenemos estos tickets pendientes de Cedi sin poder ingresar",Si,0.92,Si,0.85,Si,0.974,ambos_si,Sistema SAP,media,,
+28,Rubí Canché (Turistore),"Hola, seguimos en espera quien apoya a la 107 con los productos de farmacia sin precio en el sistema
+‎[05/09/25, 3:38:45 p.m.] Miriam Buccio supervisora: ‎<adjunto: 00002831-PHOTO-2025-09-05-15-38-45.",Si,0.92,No,0.85,Si,0.782,discrepancia,Precios,media,,
+29,Vicente Cañaveral (Turistore),Me  ayudan pliss,No,0,No,0,No,0,,,,,
+30,Vicente Cañaveral (Turistore),Ayudan con esto de las 606 aún no podemos generar la orden de compra de Producción,No,0,No,0,No,0,,,,,
+31,~ EDNA ALICIA CRUZ RAMOS,"Buenas tardes en 102 no deja hacer pedido de artesanias,y si le dejo hacer de abarrotrs",No,0,No,0,No,0,,,,,
+32,Angela Chale SUPERVISORA,"El apoyo para que llegue notificación Vicky y que las tienes tenga informe de lo que tienen en tránsito !
+‎[18/09/25, 3:18:06 p.m.] Miriam Buccio supervisora: ‎<adjunto: 00003253-PHOTO-2025-09-18-15-1",Si,0.75,No,0.95,No,0.807,discrepancia,,,,
+33,Nataly Ake Turistore,"@⁨Alvaro May Turistore⁩ @⁨Jose Santamaria Turistore⁩ nos ayudan con la unidad de medida que no les deja seguir en el POS, la oc ya esta bien .",No,0,No,0,No,0,,,,,
+34,Lupita Carbajal,Gracias Jose,No,0.99,No,0.99,No,0.99,ambos_no,,,,
+35,Lupita Carbajal,Hola,No,0.99,No,0.99,No,0.99,ambos_no,,,,
+36,Roxana Ingrid Morlet,"Por fis el apoyo seguimos sin poder hacer traspasos urge ya que la tienda debe estar vacía el 30 de septiembre hay que traspasar toda la mercancía
+‎[15/09/25, 4:38:44 p.m.] Lluvia Solis Turistore: ‎<a",Si,0.95,Si,0.95,Si,1,ambos_si,Inventario,alta,,
+37,~ EDNA ALICIA CRUZ RAMOS,"Buenas tardes SISTEMAS de los tickets que están subiendo las tiendas, nosotros los supervisores no estamos enterados, ya que no hay la opción como en los tickets de Mantenimiento    de copiar al super",Si,0.85,No,0.85,No,0.722,discrepancia,,,,
+38,Iliana Rios Supervisora ⭐,Buen día ya quedó ingresada la factura de la coca de samba … muchas gracias por el,No,0,No,0,No,0,,,,,
+39,Hector Nakasone Turistore,Hay aún contratos con error de código o artículos duplicados con precios diferentes,Si,0.92,Si,0.85,Si,0.974,ambos_si,Precios,media,,
+40,Lluvia Solis Turistore,"Nos siguen llegando pedidos de proveedores sin información de que Oc sea, mencionan proveedores que no les arroja esa información, su ayuda equipo TI con el nuevo sistema",Si,0.92,Si,0.85,Si,0.974,ambos_si,Ordenes de Compra,media,,
+41,Angela Chale SUPERVISORA,Buen día @⁨Rubí Canché (Turistore)⁩  nos apoyas para ver con Lupita este tema !!,No,0,No,0,No,0,,,,,
+42,Angela Chale SUPERVISORA,Sin repuesta ocupan el producto !!,No,0,No,0,No,0,,,,,
+43,Nataly Ake Turistore,este ya quedo,No,0,No,0,No,0,,,,,
+44,~ Ale Arenas,"Buena tarde, me ayudas con la sincronizacion de la promo PDV7875 Por favor , sigue sin pasar
+en tienda de los cabos",Si,0.95,Si,0.85,Si,0.99,ambos_si,Sistema SAP,media,,
+45,Angela Chale SUPERVISORA,Así es  se escaneaba con ese código y pasaba correctamente y hoy  no se puede escanear,No,0,No,0,No,0,,,,,
+46,Angela Chale SUPERVISORA,Nos apoyan para saber estatus de estos pedidos por favor 🙏,No,0,No,0,No,0,,,,,
+47,~ Ale Arenas,"desconozco por que lo visualizan de esa manera, Ti nos pueden ayudar con esta duda por favor , gracias
+‎[03/10/25, 7:37:27 a.m.] Angela Chale SUPERVISORA: ‎<adjunto: 00003745-PHOTO-2025-10-03-07-37-27",Si,0.85,No,0.85,No,0.722,discrepancia,,,,
+48,Sistemas,si un minuto,No,0.99,No,0.99,No,0.99,ambos_no,,,,
+49,Lluvia Solis Turistore,Tienda 907 no deja cobrar marca error,Si,0.98,Si,0.98,Si,1,ambos_si,POS,alta,,
+50,Vicente Cañaveral (Turistore),Nos ayudan plis,No,0.75,No,0.85,No,0.85,ambos_no,,,,

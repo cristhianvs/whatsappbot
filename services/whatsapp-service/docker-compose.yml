@@ -1,0 +1,115 @@
+version: '3.8'
+
+services:
+  whatsapp-service:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: whatsapp-service
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./sessions:/app/sessions:rw
+      - ./logs:/app/logs:rw
+      - ./backups:/app/backups:rw
+      - ./.env:/app/.env:ro
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=debug
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - whatsapp-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  redis:
+    image: redis:7-alpine
+    container_name: whatsapp-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: redis-server /usr/local/etc/redis/redis.conf
+    restart: unless-stopped
+    networks:
+      - whatsapp-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+        reservations:
+          memory: 128M
+          cpus: '0.1'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+
+  # Optional: Redis Commander for development
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: whatsapp-redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+      - HTTP_USER=admin
+      - HTTP_PASSWORD=admin123
+    ports:
+      - "8081:8081"
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - whatsapp-network
+    profiles:
+      - tools
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.1'
+
+volumes:
+  redis-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/redis
+
+networks:
+  whatsapp-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

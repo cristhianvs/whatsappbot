@@ -1,0 +1,19 @@
+================================================================================
+ESTADÍSTICAS DEL TEST DE CLASIFICACIÓN
+================================================================================
+
+Total de mensajes clasificados: 50
+
+CONSENSO:
+  Ambos Sí (incidencia): 12 (24.0%)
+  Ambos No: 12 (24.0%)
+  Discrepancia: 10 (20.0%)
+
+TIEMPOS PROMEDIO:
+  Claude: 3742 ms
+  OpenAI: 3768 ms
+
+COSTOS ESTIMADOS:
+  Claude: $0.2738
+  OpenAI: $0.0101
+  Total: $0.2839

@@ -55,3 +55,22 @@ class RedisClient:
         except Exception as e:
             logger.error("Failed to get cache", error=str(e), key=key)
             return None
+    
+    async def subscribe_to_channel(self, channel: str):
+        """Subscribe to a Redis channel and return pubsub object"""
+        try:
+            pubsub = self.redis.pubsub()
+            await pubsub.subscribe(channel)
+            logger.info("Subscribed to channel", channel=channel)
+            return pubsub
+        except Exception as e:
+            logger.error("Failed to subscribe to channel", error=str(e), channel=channel)
+            return None
+    
+    async def publish_message(self, channel: str, message: dict):
+        """Publish a message to a Redis channel"""
+        try:
+            await self.redis.publish(channel, json.dumps(message))
+            logger.debug("Message published to channel", channel=channel)
+        except Exception as e:
+            logger.error("Failed to publish message", error=str(e), channel=channel)

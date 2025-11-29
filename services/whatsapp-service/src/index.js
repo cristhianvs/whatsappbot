@@ -1,62 +1,108 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-
-const WhatsAppService = require('./whatsapp-service');
-const WhatsAppRoutes = require('./api/routes');
-const ResponseHandler = require('./handlers/responseHandler');
-const logger = require('./utils/logger');
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import WhatsAppService from './whatsapp-service.js';
+import apiRoutes from './api/routes.js';
+import logger from './utils/logger.js';
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const port = process.env.PORT || 3001;
 
+// Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'healthy',
-    service: 'whatsapp-service',
-    timestamp: new Date().toISOString()
-  });
+// Request logging middleware
+app.use((req, res, next) => {
+    logger.info(`${req.method} ${req.path}`, {
+        ip: req.ip,
+        userAgent: req.get('User-Agent')
+    });
+    next();
 });
 
-// Initialize WhatsApp service
-const whatsappService = new WhatsAppService();
+async function startServer() {
+    try {
+        logger.info('Starting WhatsApp Service...', {
+            port,
+            nodeEnv: process.env.NODE_ENV,
+            serviceName: process.env.SERVICE_NAME
+        });
 
-// Initialize response handler
-const responseHandler = new ResponseHandler(whatsappService);
+        // Initialize WhatsApp Service
+        const whatsappService = new WhatsAppService();
+        await whatsappService.initialize();
+        
+        // Make services available to routes
+        app.locals.whatsappService = whatsappService;
+        app.locals.redisClient = whatsappService.redisClient;
+        app.locals.logger = logger;
+        
+        // Configure routes
+        app.use('/api', apiRoutes);
+        
+        // Global error handler
+        app.use((error, req, res, next) => {
+            logger.error('Unhandled API error:', error);
+            res.status(500).json({
+                error: 'Internal server error',
+                message: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'
+            });
+        });
+        
+        // 404 handler
+        app.use('*', (req, res) => {
+            res.status(404).json({
+                error: 'Not found',
+                message: `Route ${req.originalUrl} not found`
+            });
+        });
+        
+        // Start server
+        const server = app.listen(port, () => {
+            logger.info(`WhatsApp Service running on port ${port}`, {
+                port,
+                environment: process.env.NODE_ENV
+            });
+        });
 
-// Setup API routes
-const apiRoutes = new WhatsAppRoutes(whatsappService);
-app.use('/api', apiRoutes.getRouter());
+        // Graceful shutdown handling
+        const gracefulShutdown = async (signal) => {
+            logger.info(`Received ${signal}, shutting down gracefully...`);
+            
+            server.close(async () => {
+                try {
+                    if (whatsappService) {
+                        await whatsappService.shutdown();
+                    }
+                    logger.info('WhatsApp Service shut down successfully');
+                    process.exit(0);
+                } catch (error) {
+                    logger.error('Error during shutdown:', error);
+                    process.exit(1);
+                }
+            });
+        };
 
-// Start server
-app.listen(PORT, async () => {
-  logger.info(`WhatsApp service running on port ${PORT}`);
-  
-  try {
-    await whatsappService.initialize();
-    await responseHandler.initialize();
-    logger.info('WhatsApp service initialized successfully');
-  } catch (error) {
-    logger.error('Failed to initialize WhatsApp service:', error);
+        process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+        process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+        
+    } catch (error) {
+        logger.error('Error starting WhatsApp Service:', error);
+        process.exit(1);
+    }
+}
+
+// Handle uncaught exceptions
+process.on('uncaughtException', (error) => {
+    logger.error('Uncaught Exception:', error);
     process.exit(1);
-  }
 });
 
-// Graceful shutdown
-process.on('SIGTERM', async () => {
-  logger.info('Shutting down WhatsApp service...');
-  await responseHandler.disconnect();
-  await whatsappService.disconnect();
-  process.exit(0);
+process.on('unhandledRejection', (reason, promise) => {
+    logger.error('Unhandled Rejection at:', promise, 'reason:', reason);
+    process.exit(1);
 });
 
-process.on('SIGINT', async () => {
-  logger.info('Received SIGINT, shutting down gracefully...');
-  await responseHandler.disconnect();
-  await whatsappService.disconnect();
-  process.exit(0);
-});
+startServer();
